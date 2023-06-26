@@ -13,12 +13,14 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
-  overrides: [{
-    files: ['vite.config.ts'],
-    rules: {
-      'import/no-default-export': 'off'
+  overrides: [
+    {
+      files: ['vite.config.ts'],
+      rules: {
+        'import/no-default-export': 'off'
+      }
     }
-  }],
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: true,
@@ -162,7 +164,10 @@ module.exports = {
         leadingUnderscore: 'require'
       }
     ],
-    '@typescript-eslint/no-unused-vars': ['error', { 'ignoreRestSiblings': true }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { ignoreRestSiblings: true }
+    ],
     'eslint-comments/no-unused-disable': 'error',
     'eslint-comments/require-description': [
       'error',
@@ -253,12 +258,10 @@ module.exports = {
     'unicorn/filename-case': [
       'error',
       {
-        'ignore': [
-          'vite-env.d.ts'
-        ],
-        'cases': {
-          'camelCase': true,
-          'pascalCase': true
+        ignore: ['vite-env.d.ts'],
+        cases: {
+          camelCase: true,
+          pascalCase: true
         }
       }
     ],
