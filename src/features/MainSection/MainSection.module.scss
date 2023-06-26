@@ -1,0 +1,16 @@
+.container {
+  flex: 0.8;
+  overflow-y: auto;
+  background-color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 1rem;
+  border-radius: 0.5rem;
+  padding-bottom: 6rem;
+  height: 100vh;
+}
+.card_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
