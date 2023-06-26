@@ -1,5 +1,6 @@
 import './App.styles.scss';
+import { MainLayout } from './layouts/MainLayout/MainLayout';
 
 export const App = () => {
-  return <h1>Getting started</h1>;
+  return <MainLayout />;
 };
