@@ -1,12 +1,18 @@
+import { useAppSelector } from '../../../store/store.types';
+import { selectUser } from '../../../store/user/user.selector';
 import styles from './Navbar.module.scss';
-import { Button } from '../../../shared/ui/Button/Button';
 
 export const Navbar = () => {
+  const user = useAppSelector(selectUser);
+
+  const imageUrl = user?.images[0];
+  console.log(imageUrl);
+
   return (
     <div className={styles.container}>
-      <div className={styles.btn_container}>
-        <Button className={styles.auth}>Sign Up</Button>
-        <Button className={styles.auth}>Log In</Button>
+      <div className={styles.user_container}>
+        <h3>Hello, {user?.display_name}</h3>
+        <img src={imageUrl?.url} />
       </div>
     </div>
   );
