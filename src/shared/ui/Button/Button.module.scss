@@ -14,9 +14,6 @@
   &:disabled {
     cursor: not-allowed;
   }
-  &:hover {
-    color: var(--text-color-primary);
-  }
 }
 .icon {
   > svg {
