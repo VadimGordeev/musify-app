@@ -1,6 +1,6 @@
 import './App.styles.scss';
-import { MainLayout } from './layouts/MainLayout/MainLayout';
+import { AppRouter } from './router/AppRouter';
 
 export const App = () => {
-  return <MainLayout />;
+  return <AppRouter />;
 };

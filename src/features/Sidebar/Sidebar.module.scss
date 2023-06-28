@@ -6,7 +6,7 @@
   margin-right: 0.5rem;
   height: 100vh;
   &[data-open='true'] {
-    width: 10%;
-    // transform: translateX(0);
+    max-width: 5%;
+    transition: all 0.3s;
   }
 }
