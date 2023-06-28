@@ -32,6 +32,9 @@ export default defineConfig(({ mode }) => {
           'src'
         )
       }
+    },
+    server: {
+      port: 5173
     }
   };
 });
