@@ -5,6 +5,7 @@
   --grey: #121212;
   --light-grey: #232323;
   --white: #fff;
+  --green: #1ed760;
 }
 
 body,
@@ -16,5 +17,8 @@ html {
   flex-direction: column;
   font-family: Gothic A1;
   background-color: var(--black);
+  color: var(--white);
+}
+button {
   color: var(--white);
 }
