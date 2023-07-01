@@ -1,12 +1,11 @@
+import styles from './Navbar.module.scss';
 import { useAppSelector } from '../../../store/store.types';
 import { selectUser } from '../../../store/user/user.selector';
-import styles from './Navbar.module.scss';
 
 export const Navbar = () => {
   const user = useAppSelector(selectUser);
 
   const imageUrl = user?.images[0];
-  console.log(imageUrl);
 
   return (
     <div className={styles.container}>

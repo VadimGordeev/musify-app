@@ -22,7 +22,6 @@ export const fetchUser = createAsyncThunk(
         signal: thunkAPI.signal
       }
     );
-    console.log(data);
     return data;
   }
 );
