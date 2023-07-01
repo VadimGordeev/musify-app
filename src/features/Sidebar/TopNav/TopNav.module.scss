@@ -7,7 +7,9 @@
   background-color: var(--grey);
   border-radius: 0.5rem;
 }
-.link {
+a {
+  width: fit-content;
+  text-decoration: none;
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
