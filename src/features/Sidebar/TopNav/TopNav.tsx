@@ -1,24 +1,21 @@
+import { NavLink } from 'react-router-dom';
+
 import { ReactComponent as HomeIcon } from '~/assets/icons/home.svg';
 import { ReactComponent as SearchIcon } from '~/assets/icons/search.svg';
 
 import styles from './TopNav.module.scss';
-import { Button } from '../../../shared/ui/Button/Button';
 
 export const TopNav = () => {
   return (
     <div className={styles.container}>
-      <Button
-        icon={<HomeIcon />}
-        className={styles.link}
-      >
+      <NavLink to="/">
+        <HomeIcon />
         Home
-      </Button>
-      <Button
-        icon={<SearchIcon />}
-        className={styles.link}
-      >
+      </NavLink>
+      <NavLink to="/search">
+        <SearchIcon />
         Search
-      </Button>
+      </NavLink>
     </div>
   );
 };
