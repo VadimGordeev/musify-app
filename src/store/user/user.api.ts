@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosHeaders } from 'axios';
 
+import { instance } from '../../api/instance';
 import { type UserProfile } from '../../entities/spotifyTypes';
 
 export const fetchUser = createAsyncThunk(
@@ -12,16 +12,9 @@ export const fetchUser = createAsyncThunk(
       throw new Error('Unauthorized');
     }
 
-    const headers = new AxiosHeaders();
-
-    headers.set('Authorization', `Bearer ${accessToken}`);
-    const { data } = await axios.get<UserProfile>(
-      'https://api.spotify.com/v1/me/',
-      {
-        headers,
-        signal: thunkAPI.signal
-      }
-    );
+    const { data } = await instance.get<UserProfile>(`/me/`, {
+      signal: thunkAPI.signal
+    });
     return data;
   }
 );

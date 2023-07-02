@@ -1,15 +1,27 @@
+import { NavLink } from 'react-router-dom';
+
 import { ReactComponent as Cover } from '~/assets/cover.svg';
 
 import styles from './Playlists.module.scss';
+import { type Playlist } from '../../../../entities/spotifyTypes';
 
-export const Playlists = () => {
+export const PlaylistsCard = ({ card }: { card: Playlist }) => {
   return (
-    <div className={styles.container}>
-      <Cover className={styles.cover} />
+    <NavLink
+      to={`/playlist/${card.id}`}
+      className={styles.container}
+    >
+      {card.images.length > 0 ? (
+        <img
+          className={styles.cover}
+          src={card.images[0].url}
+        />
+      ) : (
+        <Cover className={styles.cover} />
+      )}
       <div>
-        <p className={styles.name}>My Playlist</p>
-        <p>Playlist &#x2022; Spotify</p>
+        <p className={styles.name}>{card.name}</p>
       </div>
-    </div>
+    </NavLink>
   );
 };
