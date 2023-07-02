@@ -1,7 +1,11 @@
 import { useParams } from 'react-router-dom';
 
-export const PlaylistPage = () => {
-  const { id } = useParams();
+import { useGetPlaylistTracksQuery } from '../../store/playlists/playlistTracks.api';
 
-  return <div>{id}</div>;
+export const PlaylistPage = () => {
+  const { id } = useParams<'id'>();
+
+  const { data } = useGetPlaylistTracksQuery({ id: id || '' });
+
+  return <div>{JSON.stringify(data)}</div>;
 };
