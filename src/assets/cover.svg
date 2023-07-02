@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 4000 4000">
-<rect width="100%" height="100%"/>
-<polygon fill="#FFF" points="2005,2448 1115,3338 672,2895 1562,2005 672,1115 1115,672 2005,1562 2895,672 3338,1115 2448,2005 3338,2895 2895,3338"/>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="48" fill="#121212"/>
+<path d="M21 30V17L33 15V28" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18 33C19.6569 33 21 31.6569 21 30C21 28.3431 19.6569 27 18 27C16.3431 27 15 28.3431 15 30C15 31.6569 16.3431 33 18 33Z" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30 31C31.6569 31 33 29.6569 33 28C33 26.3431 31.6569 25 30 25C28.3431 25 27 26.3431 27 28C27 29.6569 28.3431 31 30 31Z" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

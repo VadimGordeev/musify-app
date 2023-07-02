@@ -4,7 +4,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { MainSection } from '../features/MainSection/MainSection';
 import { MainLayout } from '../layouts/MainLayout/MainLayout';
-import { Auth } from '../pages/auth/auth';
+import { Auth } from '../pages/Auth/Auth';
+import { MainPage } from '../pages/MainPage/MainPage';
+import { PlaylistPage } from '../pages/PlaylistPage/PlaylistPage';
+import { SearchPage } from '../pages/SearchPage/SearchPage';
 import { Loader } from '../shared/ui/Loader/Loader';
 import { useAppDispatch } from '../store/store.types';
 import { fetchUser } from '../store/user/user.api';
@@ -15,8 +18,21 @@ const router = createBrowserRouter([
     path: '/',
     children: [
       {
-        index: true,
-        Component: MainSection
+        Component: MainSection,
+        children: [
+          {
+            index: true,
+            Component: MainPage
+          },
+          {
+            path: '/search',
+            Component: SearchPage
+          },
+          {
+            path: '/playlist/:id',
+            Component: PlaylistPage
+          }
+        ]
       }
     ]
   },

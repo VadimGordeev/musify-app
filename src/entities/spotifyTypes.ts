@@ -5,7 +5,7 @@ export interface Playlist {
   followers: Followers;
   href: string;
   id: string;
-  images: any[];
+  images: string[];
   name: string;
   owner: Owner;
   public: boolean;

@@ -11,3 +11,8 @@ export const loadingUser = (state: RootState) =>
   state.user.currentUser.status === STATUS.LOADING
     ? state.user.currentUser.isLoading
     : null;
+
+export const userId = (state: RootState) =>
+  state.user.currentUser.status === STATUS.SUCCESS
+    ? state.user.currentUser.data.id
+    : '';
