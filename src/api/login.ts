@@ -17,4 +17,5 @@ export const authSpotify = (): void => {
   const redirectUrl = `${config.authorize_url}?client_id=${config.client_id}&response_type=token&redirect_uri=${config.redirect_uri}&scope=${encodedScope}`;
 
   window.location.replace(redirectUrl);
+
 };

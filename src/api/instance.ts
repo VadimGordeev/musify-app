@@ -1,19 +1,20 @@
-import axios, { type AxiosError, AxiosHeaders } from 'axios';
+import axios, { type AxiosError } from 'axios';
 import { useLocation } from 'react-router-dom';
 
 import { SPOTIFY_URL } from './constant';
 import { authSpotify } from './login';
 
-const accessToken = localStorage.getItem('spotify/access-token');
-
-const headers = new AxiosHeaders();
-if (accessToken) {
-  headers.set('Authorization', `Bearer ${accessToken}`);
-}
-
 export const instance = axios.create({
-  baseURL: `${SPOTIFY_URL}`,
-  headers
+  baseURL: `${SPOTIFY_URL}`
+});
+
+instance.interceptors.request.use((config) => {
+  const accessToken = localStorage.getItem('spotify/access-token');
+  if (!accessToken) {
+    throw new Error('UnauthorizedQ');
+  }
+  config.headers.set('Authorization', `Bearer ${accessToken}`);
+  return config;
 });
 
 instance.interceptors.response.use(undefined, (error: AxiosError) => {

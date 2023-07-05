@@ -1,15 +1,14 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
-import { Navigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { authSpotify } from '../../api/login';
 import { Loader } from '../../shared/ui/Loader/Loader';
 
 export const Auth = () => {
   const { hash } = useLocation();
+  const navigate = useNavigate();
 
-  const saveToken = useCallback(() => {
-    authSpotify();
+  useEffect(() => {
     if (hash) {
       const token = hash
         .slice(1)
@@ -19,19 +18,10 @@ export const Auth = () => {
 
       if (token) {
         localStorage.setItem('spotify/access-token', token);
+        navigate('/');
       }
     }
-  }, [hash]);
+  }, [hash, navigate]);
 
-  useEffect(() => {
-    if (!localStorage.getItem('spotify/access-token')) {
-      saveToken();
-    }
-  }, [saveToken]);
-
-  return localStorage.getItem('spotify/access-token') ? (
-    <Navigate to="/" />
-  ) : (
-    <Loader />
-  );
+  return <Loader />;
 };

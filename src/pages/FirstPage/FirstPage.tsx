@@ -13,7 +13,7 @@ export const FirstPage = () => {
       <Button
         className={styles.login}
         onClick={() => {
-          navigate('/auth');
+          authSpotify();
         }}
         disabled={!!location.hash}
       >
