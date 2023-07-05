@@ -16,7 +16,7 @@ export const Library = ({ onClick }: { onClick: () => void }) => {
 
   return (
     <div className={styles.container}>
-      {status !== 'pending' && <Loader />}
+      {status === 'pending' && <Loader />}
       <div className={styles.library}>
         <Button
           className={styles.library_btn}
