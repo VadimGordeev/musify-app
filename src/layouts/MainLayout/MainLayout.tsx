@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import styles from './MainLayout.module.scss';
 import { Player } from '../../features/Player/Player';
 import { Sidebar } from '../../features/Sidebar/Sidebar';
-import { FirstPage } from '../../pages/FirstPage/FirstPage';
+import { LoginPage } from '../../pages/FirstPage/LoginPage';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../store/store.types';
 import { fetchUser } from '../../store/user/user.api';
@@ -41,6 +41,6 @@ export const MainLayout = () => {
   ) : isLoading ? (
     <Loader />
   ) : (
-    <FirstPage />
+    <LoginPage />
   );
 };
