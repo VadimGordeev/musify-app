@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 
+import styles from './PlaylistPage.module.scss';
 import { useGetPlaylistTracksQuery } from '../../store/playlists/playlistTracks.api';
 
 export const PlaylistPage = () => {
@@ -7,5 +8,9 @@ export const PlaylistPage = () => {
 
   const { data } = useGetPlaylistTracksQuery({ id: id || '' });
 
-  return <div>{JSON.stringify(data)}</div>;
+  return (
+    <div className={styles.container}>
+      <div className={styles.playlist_info}>{JSON.stringify(data)}</div>
+    </div>
+  );
 };
