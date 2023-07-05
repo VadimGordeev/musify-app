@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchUser } from './user.api';
 import { type UserSlice } from './user.types';
 import { STATUS } from '../../entities/status';
+import { startAppListening } from '../store.types';
 
 const getInitialState = (): UserSlice => {
   return {
@@ -35,6 +36,13 @@ export const userSlice = createSlice({
         error: action.error.message || 'Unexpected error'
       };
     });
+  }
+});
+
+startAppListening({
+  matcher: userSlice.actions.logout.match,
+  effect: () => {
+    localStorage.removeItem('spotify/access-token');
   }
 });
 
