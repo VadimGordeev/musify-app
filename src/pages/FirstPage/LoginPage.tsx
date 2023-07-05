@@ -1,12 +1,11 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import styles from './FirstPage.module.scss';
+import styles from './LoginPage.module.scss';
 import { authSpotify } from '../../api/login';
 import { Button } from '../../shared/ui/Button/Button';
 
-export const FirstPage = () => {
+export const LoginPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <h1>Welcome to Spotify</h1>
@@ -19,7 +18,6 @@ export const FirstPage = () => {
       >
         Login
       </Button>
-      <Button onClick={() => navigate('/loader')}>Test loader</Button>
     </div>
   );
 };
