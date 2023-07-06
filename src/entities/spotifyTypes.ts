@@ -5,7 +5,7 @@ export interface Playlist {
   followers: Followers;
   href: string;
   id: string;
-  images: string[];
+  images: Image[];
   name: string;
   owner: Owner;
   public: boolean;
@@ -25,7 +25,7 @@ export interface Owner {
 
 export interface Tracks {
   href: string;
-  items: any[];
+  items: TrackItems[];
   limit: number;
   next: null;
   offset: number;
@@ -73,13 +73,14 @@ export interface Followers {
 }
 
 export interface Image {
-  height: number | null;
   url: string;
+  height: number | null;
   width: number | null;
 }
 
 export interface Album {
   album_type: string;
+  total_tracks: number;
   artists: Artist[];
   available_markets?: string[];
   external_urls: ExternalUrls;
@@ -91,12 +92,19 @@ export interface Album {
   release_date_precision: string;
   type: string;
   uri: string;
+  genres: string[];
+  label: string;
+  popularity: number;
+  album_group: string;
 }
 
 export interface Artist {
   external_urls: ExternalUrls;
+  followers: Followers;
+  genres: string[];
   href: string;
   id: string;
+  images: Image[];
   name: string;
   type: string;
   uri: string;
@@ -108,4 +116,18 @@ export interface ExternalUrls {
 
 export interface ExternalIDS {
   isrc: string;
+}
+
+export interface TrackItems {
+  added_at: string;
+  added_by: {
+    external_urls: ExternalUrls;
+    followers: Followers;
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  is_local: boolean;
+  track: Track;
 }
