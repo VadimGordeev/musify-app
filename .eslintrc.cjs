@@ -19,6 +19,12 @@ module.exports = {
       rules: {
         'import/no-default-export': 'off'
       }
+    },
+    {
+      files: ['spotifyTypes.ts'],
+      rules: {
+        '@typescript-eslint/naming-convention': 'off'
+      }
     }
   ],
   parser: '@typescript-eslint/parser',
