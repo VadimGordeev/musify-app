@@ -31,11 +31,19 @@ const getFormattedTrackDuration = (songDuration: number): string => {
 export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
   return (
     <div className={styles.container}>
-      <span>{index + 1}</span>
-      <span>{item.track.name}</span>
-      <span>{item.track.album.name}</span>
-      <span>{getDistanceDate(item.added_at)}</span>
-      <span>{getFormattedTrackDuration(item.track.duration_ms)}</span>
+      <span className={styles.index}>{index + 1}</span>
+      <div className={styles.title}>
+        <img src={item.track.album.images[0].url} />
+        <div className={styles.info}>
+          <span>{item.track.name}</span>
+          <span>{item.track.artists[0].name}</span>
+        </div>
+      </div>
+      <span className={styles.album}>{item.track.album.name}</span>
+      <span className={styles.date}>{getDistanceDate(item.added_at)}</span>
+      <span className={styles.duration}>
+        {getFormattedTrackDuration(item.track.duration_ms)}
+      </span>
     </div>
   );
 };
