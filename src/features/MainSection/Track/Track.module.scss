@@ -1,0 +1,9 @@
+.container {
+  height: 37px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  span {
+    text-overflow: ellipsis;
+  }
+}
