@@ -39,11 +39,11 @@ export const PlaylistPage = () => {
       </div>
       <div className={styles.tracklist}>
         <div className={styles.header}>
-          <span>#</span>
-          <span>Title</span>
-          <span>Album</span>
-          <span>Date added</span>
-          <span>
+          <span className={styles.index}>#</span>
+          <span className={styles.title}>Title</span>
+          <span className={styles.album}>Album</span>
+          <span className={styles.date}>Date added</span>
+          <span className={styles.duration}>
             <DurationIcon />
           </span>
         </div>
