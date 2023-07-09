@@ -19,11 +19,24 @@
       height: 34px;
     }
   }
+  a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+    margin: 0;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   .index {
     width: 20px;
   }
   .title {
-    width: 300px;
+    width: 68%;
     display: flex;
     gap: 15px;
     .info {
@@ -33,6 +46,6 @@
   }
   .album,
   .date {
-    width: 120px;
+    width: 17%;
   }
 }
