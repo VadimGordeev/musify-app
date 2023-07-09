@@ -8,11 +8,20 @@ export interface PlaylistResponse {
 export const playlistsApi = baseApi.injectEndpoints({
   overrideExisting: false,
   endpoints: (build) => ({
-    getPlaylists: build.query<PlaylistResponse, { id: string }>({
-      query: ({ id }) => ({
-        url: `/users/${id}/playlists`
-      })
-    })
+    getPlaylists: build.query<PlaylistResponse, { id: string; limit?: number }>(
+      {
+        query: ({ id, limit }) => ({
+          url: `/users/${id}/playlists`,
+          params: {
+            limit: limit ?? 20
+            // offset: offset ?? 0
+          }
+        }),
+        merge: (currentCache, newItems) => {
+          currentCache.items.push(...newItems.items);
+        }
+      }
+    )
   })
 });
 
