@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as Cover } from '~/assets/cover.svg';
@@ -9,7 +10,7 @@ export const PlaylistsCard = ({ card }: { card: Playlist }) => {
   return (
     <NavLink
       to={`/playlist/${card.id}`}
-      className={styles.container}
+      className={({ isActive }) => classNames({ [styles.active]: isActive })}
     >
       {card.images.length > 0 ? (
         <img
