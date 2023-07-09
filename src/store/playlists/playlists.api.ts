@@ -14,7 +14,6 @@ export const playlistsApi = baseApi.injectEndpoints({
           url: `/users/${id}/playlists`,
           params: {
             limit: limit ?? 20
-            // offset: offset ?? 0
           }
         }),
         merge: (currentCache, newItems) => {
