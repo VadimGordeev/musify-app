@@ -5,6 +5,7 @@ import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
 
 import styles from './AlbumPage.module.scss';
 import { TrackItem } from '../../features/MainSection/Track/Track';
+import { Loader } from '../../shared/ui/Loader/Loader';
 import { useGetAlbumQuery } from '../../store/api/album/album.api';
 
 export const AlbumPage = () => {
@@ -61,6 +62,6 @@ export const AlbumPage = () => {
       </div>
     </div>
   ) : (
-    <p>oops, something went wrong</p>
+    <Loader />
   );
 };
