@@ -27,7 +27,9 @@ export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
         {item.album && <img src={item.album.images[0].url} />}
         <div className={styles.info}>
           <span>{item.name}</span>
-          <span>{item.artists[0].name}</span>
+          <NavLink to={`/artist/${item.artists[0].id}`}>
+            <span>{item.artists[0].name}</span>
+          </NavLink>
         </div>
       </div>
       {item.album && (
