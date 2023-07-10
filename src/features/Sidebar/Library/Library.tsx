@@ -7,7 +7,7 @@ import styles from './Library.module.scss';
 import { PlaylistsCard } from './Playlists/Playlists';
 import { Button } from '../../../shared/ui/Button/Button';
 import { Loader } from '../../../shared/ui/Loader/Loader';
-import { useGetPlaylistsQuery } from '../../../store/playlists/playlists.api';
+import { useGetPlaylistsQuery } from '../../../store/api/playlists/playlists.api';
 import { useAppSelector } from '../../../store/store.types';
 import { userId } from '../../../store/user/user.selector';
 
