@@ -34,15 +34,22 @@
     }
     .statistics {
       display: flex;
-      .owner,
       .tracks_quantity {
         font-size: 0.875rem;
+        margin: 0;
         color: var(--text-grey);
+        &::before {
+          content: '•';
+          margin: 0 4px;
+        }
       }
-
-      .owner::after {
-        content: '•';
-        margin: 0 4px;
+      .artist {
+        font-size: 0.875rem;
+        margin-top: 0px;
+        color: var(--text-grey);
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

@@ -23,9 +23,13 @@
 }
 .name {
   margin: 0.25rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.description {
+.type {
   margin: 0;
   font-size: 0.8rem;
   opacity: 0.5;
+  text-transform: capitalize;
 }

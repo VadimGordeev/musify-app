@@ -1,5 +1,5 @@
-import { type Album } from '../../entities/spotifyTypes';
-import { baseApi } from '../api';
+import { baseApi } from '..';
+import { type Album } from '../../../entities/spotifyTypes';
 
 export const albumApi = baseApi.injectEndpoints({
   overrideExisting: false,

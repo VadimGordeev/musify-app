@@ -5,7 +5,7 @@ import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
 
 import styles from './PlaylistPage.module.scss';
 import { TrackItem } from '../../features/MainSection/Track/Track';
-import { useGetPlaylistQuery } from '../../store/playlists/playlist.api';
+import { useGetPlaylistQuery } from '../../store/api/playlists/playlist.api';
 
 export const PlaylistPage = () => {
   const { id } = useParams<'id'>();

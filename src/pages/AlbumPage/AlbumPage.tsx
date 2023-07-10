@@ -1,11 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { ReactComponent as Cover } from '~/assets/cover.svg';
 import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
 
 import styles from './AlbumPage.module.scss';
 import { TrackItem } from '../../features/MainSection/Track/Track';
-import { useGetAlbumQuery } from '../../store/album/album.api';
+import { useGetAlbumQuery } from '../../store/api/album/album.api';
 
 export const AlbumPage = () => {
   const { id } = useParams<'id'>();
@@ -27,7 +27,12 @@ export const AlbumPage = () => {
           <p className={styles.type}>{data.album_type}</p>
           <p className={styles.name}>{data.name}</p>
           <div className={styles.statistics}>
-            <p className={styles.owner}>{data.artists[0].name}</p>
+            <NavLink
+              to={`/artist/${data.artists[0].id}`}
+              className={styles.artist}
+            >
+              {data.artists[0].name}
+            </NavLink>
             <p className={styles.tracks_quantity}>
               {data.tracks.items.length} tracks
             </p>

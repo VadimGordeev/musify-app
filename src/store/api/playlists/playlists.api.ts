@@ -1,7 +1,7 @@
-import { type Playlist } from '../../entities/spotifyTypes';
-import { baseApi } from '../api';
+import { baseApi } from '..';
+import { type Playlist } from '../../../entities/spotifyTypes';
 
-export interface PlaylistResponse {
+interface PlaylistResponse {
   items: [Playlist];
   total: number;
 }
