@@ -20,7 +20,11 @@ export const Card = ({
   return (
     <div className={styles.container}>
       <div
-        onClick={() => navigate(`/album/${item.id}`)}
+        onClick={() =>
+          item.type === 'artist'
+            ? navigate(`/artist/${item.id}`)
+            : navigate(`/album/${item.id}`)
+        }
         className={styles.card}
       >
         {item.images ? (
