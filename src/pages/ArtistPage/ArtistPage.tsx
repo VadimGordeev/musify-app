@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import styles from './ArtistPage.module.scss';
 import { Card } from '../../features/MainSection/Card/Card';
 import { TrackItem } from '../../features/MainSection/Track/Track';
+import { Loader } from '../../shared/ui/Loader/Loader';
 import {
   useGetArtistAlbumsQuery,
   useGetArtistQuery,
@@ -80,6 +81,6 @@ export const ArtistPage = () => {
       </div>
     </div>
   ) : (
-    <p>oops, something went wrong</p>
+    <Loader />
   );
 };
