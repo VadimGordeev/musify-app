@@ -25,7 +25,7 @@ export const Library = ({ onClick }: { onClick: () => void }) => {
           library.scrollTop >=
           Number.parseInt(window.getComputedStyle(library, null).height);
 
-        if (isScrolledToBottom && !isFetching && data) {
+        if (isScrolledToBottom && !isFetching && data && limit <= data.total) {
           setLimit(data.items.length + limit);
         }
       };
@@ -36,7 +36,7 @@ export const Library = ({ onClick }: { onClick: () => void }) => {
         library.removeEventListener('scroll', onScroll);
       };
     }
-  }, [limit, isFetching]);
+  }, [limit, isFetching, data]);
 
   return (
     <div

@@ -3,6 +3,7 @@ import { baseApi } from '../api';
 
 export interface PlaylistResponse {
   items: [Playlist];
+  total: number;
 }
 
 export const playlistsApi = baseApi.injectEndpoints({
