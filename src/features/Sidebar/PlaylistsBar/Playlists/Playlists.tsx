@@ -10,7 +10,9 @@ export const PlaylistsCard = ({ card }: { card: Playlist }) => {
   return (
     <NavLink
       to={`/playlist/${card.id}`}
-      className={({ isActive }) => classNames({ [styles.active]: isActive })}
+      className={({ isActive }) =>
+        classNames({ [styles.active]: isActive, [styles.link]: true })
+      }
     >
       {card.images.length > 0 ? (
         <img

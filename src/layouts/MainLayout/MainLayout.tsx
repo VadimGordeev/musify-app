@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Outlet } from 'react-router-dom';
 
@@ -12,12 +12,8 @@ import { fetchUser } from '../../store/user/user.api';
 import { loadingUser, selectUser } from '../../store/user/user.selector';
 
 export const MainLayout = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
 
-  const toggleMenu = () => {
-    setIsOpen((hasBeenOpened) => !hasBeenOpened);
-  };
   useEffect(() => {
     const promise = dispatch(fetchUser());
 
@@ -31,10 +27,7 @@ export const MainLayout = () => {
 
   return user ? (
     <div className={styles.container}>
-      <Sidebar
-        isOpen={isOpen}
-        onClick={toggleMenu}
-      />
+      <Sidebar />
       <Outlet />
       <Player />
     </div>
