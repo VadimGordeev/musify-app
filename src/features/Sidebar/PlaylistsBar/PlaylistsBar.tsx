@@ -1,39 +1,41 @@
 import { useEffect, useState } from 'react';
 
+import { NavLink } from 'react-router-dom';
+
 import { ReactComponent as LibraryIcon } from '~/assets/icons/library.svg';
 import { ReactComponent as PlusIcon } from '~/assets/icons/plus.svg';
 
-import styles from './Library.module.scss';
 import { PlaylistsCard } from './Playlists/Playlists';
+import styles from './PlaylistsBar.module.scss';
 import { Button } from '../../../shared/ui/Button/Button';
 import { Loader } from '../../../shared/ui/Loader/Loader';
 import { useGetPlaylistsQuery } from '../../../store/api/playlists/playlists.api';
 import { useAppSelector } from '../../../store/store.types';
 import { userId } from '../../../store/user/user.selector';
 
-export const Library = ({ onClick }: { onClick: () => void }) => {
+export const PlaylistsBar = () => {
   const [limit, setLimit] = useState(20);
   const id = useAppSelector(userId);
 
   const { data, isFetching } = useGetPlaylistsQuery({ id, limit });
 
   useEffect(() => {
-    const library = document.querySelector('#lib');
-    if (library) {
+    const bar = document.querySelector('#bar');
+    if (bar) {
       const onScroll = () => {
         const isScrolledToBottom =
-          library.scrollTop >=
-          Number.parseInt(window.getComputedStyle(library, null).height);
+          bar.scrollTop >=
+          Number.parseInt(window.getComputedStyle(bar, null).height);
 
         if (isScrolledToBottom && !isFetching && data && limit <= data.total) {
           setLimit(data.items.length + limit);
         }
       };
 
-      library.addEventListener('scroll', onScroll);
+      bar.addEventListener('scroll', onScroll);
 
       return function () {
-        library.removeEventListener('scroll', onScroll);
+        bar.removeEventListener('scroll', onScroll);
       };
     }
   }, [limit, isFetching, data]);
@@ -41,28 +43,32 @@ export const Library = ({ onClick }: { onClick: () => void }) => {
   return (
     <div
       className={styles.container}
-      id="lib"
+      id="bar"
     >
-      {isFetching && <Loader />}
-      <div className={styles.library}>
-        <Button
+      <div className={styles.navigation}>
+        <NavLink
           className={styles.library_btn}
-          icon={<LibraryIcon />}
-          onClick={onClick}
+          to={'/library'}
         >
+          <LibraryIcon />
           Your Library
-        </Button>
+        </NavLink>
         <Button icon={<PlusIcon />} />
       </div>
-      {data &&
-        data.items.map((card) => {
-          return (
-            <PlaylistsCard
-              key={card.id}
-              card={card}
-            />
-          );
-        })}
+      <div className={styles.playlists_container}>
+        {data ? (
+          data.items.map((card) => {
+            return (
+              <PlaylistsCard
+                key={card.id}
+                card={card}
+              />
+            );
+          })
+        ) : (
+          <Loader />
+        )}
+      </div>
     </div>
   );
 };

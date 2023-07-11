@@ -7,6 +7,7 @@ import { MainLayout } from '../layouts/MainLayout/MainLayout';
 import { AlbumPage } from '../pages/AlbumPage/AlbumPage';
 import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
 import { Auth } from '../pages/Auth/Auth';
+import { LibraryPage } from '../pages/LibraryPage/LibraryPage';
 import { MainPage } from '../pages/MainPage/MainPage';
 import { PlaylistPage } from '../pages/PlaylistPage/PlaylistPage';
 import { SearchPage } from '../pages/SearchPage/SearchPage';
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
           {
             path: '/search',
             Component: SearchPage
+          },
+          {
+            path: '/library',
+            Component: LibraryPage
           },
           {
             path: '/playlist/:id',

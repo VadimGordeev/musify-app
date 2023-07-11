@@ -1,21 +1,12 @@
-import { Library } from './Library/Library';
+import { PlaylistsBar } from './PlaylistsBar/PlaylistsBar';
 import styles from './Sidebar.module.scss';
 import { TopNav } from './TopNav/TopNav';
 
-export const Sidebar = ({
-  isOpen,
-  onClick
-}: {
-  isOpen: boolean;
-  onClick: () => void;
-}) => {
+export const Sidebar = () => {
   return (
-    <div
-      className={styles.container}
-      data-open={isOpen}
-    >
+    <div className={styles.container}>
       <TopNav />
-      <Library onClick={onClick} />
+      <PlaylistsBar />
     </div>
   );
 };
