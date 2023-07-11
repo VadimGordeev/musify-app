@@ -1,8 +1,24 @@
 import { baseApi } from '..';
-import { type Track } from '../../../entities/spotifyTypes';
+import {
+  type Playlist,
+  type Album,
+  type Track
+} from '../../../entities/spotifyTypes';
 
 interface RecommendationResponse {
   tracks: [Track];
+}
+
+interface SavedAlbumsResponse {
+  items: [{ album: Album }];
+}
+
+interface UserPlaylistsResponse {
+  items: [Playlist];
+}
+
+interface RecentlyPlayedTracks {
+  items: [{ track: Track }];
 }
 
 export const userApi = baseApi.injectEndpoints({
@@ -17,8 +33,31 @@ export const userApi = baseApi.injectEndpoints({
           seed_tracks: '5sICkBXVmaCQk5aISGR3x1'
         }
       })
+    }),
+    getUserSavedAlbums: build.query<SavedAlbumsResponse, void>({
+      query: () => ({
+        url: 'me/albums'
+      })
+    }),
+    getUserPlaylists: build.query<UserPlaylistsResponse, void>({
+      query: () => ({
+        url: 'me/playlists',
+        params: {
+          limit: 50
+        }
+      })
+    }),
+    getRecentlyPlayedTracks: build.query<RecentlyPlayedTracks, void>({
+      query: () => ({
+        url: 'me/player/recently-played'
+      })
     })
   })
 });
 
-export const { useGetUserRecommendationQuery } = userApi;
+export const {
+  useGetUserRecommendationQuery,
+  useGetUserSavedAlbumsQuery,
+  useGetUserPlaylistsQuery,
+  useGetRecentlyPlayedTracksQuery
+} = userApi;
