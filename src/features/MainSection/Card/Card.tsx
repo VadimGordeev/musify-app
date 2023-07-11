@@ -20,14 +20,18 @@ export const Card = ({
   return (
     <div className={styles.container}>
       <div
-        onClick={() =>
-          item.type === 'artist'
-            ? navigate(`/artist/${item.id}`)
-            : navigate(`/album/${item.id}`)
-        }
+        onClick={() => {
+          if (item.type === 'artist') {
+            navigate(`/artist/${item.id}`);
+          } else if (item.type === 'playlist') {
+            navigate(`/playlist/${item.id}`);
+          } else {
+            navigate(`/album/${item.id}`);
+          }
+        }}
         className={styles.card}
       >
-        {item.images ? (
+        {item.images.length > 0 ? (
           <img
             className={styles.cover}
             src={item.images[0].url}

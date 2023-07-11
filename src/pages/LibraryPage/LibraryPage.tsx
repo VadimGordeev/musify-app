@@ -1,5 +1,10 @@
-import styles from './LibraryPage.module.scss';
+import { Library } from '../../features/Library/Library';
 
 export const LibraryPage = () => {
-  return <div className={styles.container}>Library Page</div>;
+  return (
+    <div>
+      <h1>Your Library</h1>
+      <Library />
+    </div>
+  );
 };
