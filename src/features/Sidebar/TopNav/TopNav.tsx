@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as HomeIcon } from '~/assets/icons/home.svg';
@@ -8,11 +9,21 @@ import styles from './TopNav.module.scss';
 export const TopNav = () => {
   return (
     <div className={styles.container}>
-      <NavLink to="/">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          classNames({ [styles.active]: isActive, [styles.link]: true })
+        }
+      >
         <HomeIcon />
         Home
       </NavLink>
-      <NavLink to="/search">
+      <NavLink
+        to="/search"
+        className={({ isActive }) =>
+          classNames({ [styles.active]: isActive, [styles.link]: true })
+        }
+      >
         <SearchIcon />
         Search
       </NavLink>

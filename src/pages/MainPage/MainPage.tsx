@@ -10,7 +10,7 @@ export const MainPage = () => {
 
   return recommendationData && newReleasesData ? (
     <div className={styles.container}>
-      <h3>Albums for You</h3>
+      <h1>Albums for You</h1>
       <div className={styles.card_container}>
         {recommendationData.tracks.map((item) => {
           return (
@@ -22,7 +22,7 @@ export const MainPage = () => {
           );
         })}
       </div>
-      <h3>Discover New Releases</h3>
+      <h1>Discover New Releases</h1>
       <div className={styles.card_container}>
         {newReleasesData.albums.items.map((item) => {
           return (
