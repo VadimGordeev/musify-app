@@ -24,4 +24,12 @@ a {
     opacity: 1;
     transition: all 0.3s;
   }
+  &.active {
+    opacity: 1;
+    transition: all 0.3s;
+  }
+}
+.link {
+  margin: 0;
+  height: 35px;
 }

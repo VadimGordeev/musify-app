@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as LibraryIcon } from '~/assets/icons/library.svg';
@@ -47,7 +48,9 @@ export const PlaylistsBar = () => {
     >
       <div className={styles.navigation}>
         <NavLink
-          className={styles.library_btn}
+          className={({ isActive }) =>
+            classNames({ [styles.active]: isActive, [styles.link]: true })
+          }
           to={'/library'}
         >
           <LibraryIcon />
