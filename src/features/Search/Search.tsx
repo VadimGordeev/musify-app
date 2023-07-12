@@ -3,13 +3,17 @@ import { type ChangeEvent, useState } from 'react';
 import styles from './Search.module.scss';
 import { SearchItems } from './SearchItems';
 import { useDebounce } from '../../shared/hooks/useDebounce';
+import { CategoryCard } from '../../shared/ui/Category/CategoryCard';
 import { InputField } from '../../shared/ui/InputField/InputField';
+import { useGetCategoriesQuery } from '../../store/api/browse/browse.api';
 import { useGetSearchResponseQuery } from '../../store/api/search/search.api';
+
 export const Search = () => {
   const [value, setValue] = useState('');
   const query = useDebounce<string>(value);
 
-  const { data, error } = useGetSearchResponseQuery({ query });
+  const { data: queryData, error } = useGetSearchResponseQuery({ query });
+  const { data: categoriesData } = useGetCategoriesQuery();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -32,13 +36,24 @@ export const Search = () => {
       </form>
       <div>
         {error
-          ? ''
-          : data && (
+          ? categoriesData && (
+              <div className={styles.categories}>
+                {categoriesData.categories.items.map((item) => {
+                  return (
+                    <CategoryCard
+                      key={item.id}
+                      category={item}
+                    />
+                  );
+                })}
+              </div>
+            )
+          : queryData && (
               <SearchItems
-                albums={data.albums.items}
-                artists={data.artists.items}
-                playlists={data.playlists.items}
-                tracks={data.tracks.items}
+                albums={queryData.albums.items}
+                artists={queryData.artists.items}
+                playlists={queryData.playlists.items}
+                tracks={queryData.tracks.items}
               />
             )}
       </div>
