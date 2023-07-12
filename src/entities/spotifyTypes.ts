@@ -134,3 +134,10 @@ export interface TrackItems {
   is_local: boolean;
   track: Track;
 }
+
+export interface Category {
+  href: string;
+  icons: [{ url: string; height: number | null; width: number | null }];
+  id: string;
+  name: string;
+}
