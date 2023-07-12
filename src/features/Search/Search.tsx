@@ -35,8 +35,10 @@ export const Search = () => {
         />
       </form>
       <div>
-        {error
-          ? categoriesData && (
+        {error ? (
+          <div>
+            <h1>All the rest</h1>
+            {categoriesData && (
               <div className={styles.categories}>
                 {categoriesData.categories.items.map((item) => {
                   return (
@@ -47,15 +49,18 @@ export const Search = () => {
                   );
                 })}
               </div>
-            )
-          : queryData && (
-              <SearchItems
-                albums={queryData.albums.items}
-                artists={queryData.artists.items}
-                playlists={queryData.playlists.items}
-                tracks={queryData.tracks.items}
-              />
             )}
+          </div>
+        ) : (
+          queryData && (
+            <SearchItems
+              albums={queryData.albums.items}
+              artists={queryData.artists.items}
+              playlists={queryData.playlists.items}
+              tracks={queryData.tracks.items}
+            />
+          )
+        )}
       </div>
     </div>
   );
