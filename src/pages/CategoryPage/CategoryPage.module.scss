@@ -1,0 +1,9 @@
+.container {
+  padding: 30px 20px 20px 30px;
+}
+.playlists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}

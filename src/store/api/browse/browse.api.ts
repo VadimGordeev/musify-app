@@ -1,11 +1,18 @@
 import { baseApi } from '..';
-import { type Category, type Album } from '../../../entities/spotifyTypes';
+import {
+  type Category,
+  type Album,
+  type Playlist
+} from '../../../entities/spotifyTypes';
 
 interface NewReleasesResponse {
   albums: { items: [Album] };
 }
 interface CategoryResponse {
   categories: { items: [Category] };
+}
+interface CategoryPlaylistsResponse {
+  playlists: { items: [Playlist] };
 }
 
 export const browseApi = baseApi.injectEndpoints({
@@ -20,8 +27,26 @@ export const browseApi = baseApi.injectEndpoints({
       query: () => ({
         url: `browse/categories`
       })
+    }),
+    getCategory: build.query<Category, { id: string }>({
+      query: ({ id }) => ({
+        url: `browse/categories/${id}`
+      })
+    }),
+    getCategoryPlaylists: build.query<
+      CategoryPlaylistsResponse,
+      { id: string }
+    >({
+      query: ({ id }) => ({
+        url: `browse/categories/${id}/playlists`
+      })
     })
   })
 });
 
-export const { useGetNewReleasesQuery, useGetCategoriesQuery } = browseApi;
+export const {
+  useGetNewReleasesQuery,
+  useGetCategoriesQuery,
+  useGetCategoryQuery,
+  useGetCategoryPlaylistsQuery
+} = browseApi;

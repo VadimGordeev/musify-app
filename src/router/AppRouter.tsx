@@ -7,6 +7,7 @@ import { MainLayout } from '../layouts/MainLayout/MainLayout';
 import { AlbumPage } from '../pages/AlbumPage/AlbumPage';
 import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
 import { Auth } from '../pages/Auth/Auth';
+import { CategoryPage } from '../pages/CategoryPage/CategoryPage';
 import { LibraryPage } from '../pages/LibraryPage/LibraryPage';
 import { MainPage } from '../pages/MainPage/MainPage';
 import { PlaylistPage } from '../pages/PlaylistPage/PlaylistPage';
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
           {
             path: '/artist/:id',
             Component: ArtistPage
+          },
+          {
+            path: '/category/:id',
+            Component: CategoryPage
           }
         ]
       }
