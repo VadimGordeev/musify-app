@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 
 import styles from './ArtistPage.module.scss';
-import { Card } from '../../features/MainSection/Card/Card';
-import { TrackItem } from '../../features/MainSection/Track/Track';
+import { Card } from '../../shared/ui/Card/Card';
 import { Loader } from '../../shared/ui/Loader/Loader';
+import { TrackItem } from '../../shared/ui/Track/Track';
 import {
   useGetArtistAlbumsQuery,
   useGetArtistQuery,

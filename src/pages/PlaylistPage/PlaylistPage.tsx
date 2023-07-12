@@ -4,9 +4,9 @@ import { ReactComponent as Cover } from '~/assets/cover.svg';
 import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
 
 import styles from './PlaylistPage.module.scss';
-import { TrackItem } from '../../features/MainSection/Track/Track';
 import { Loader } from '../../shared/ui/Loader/Loader';
-import { useGetPlaylistQuery } from '../../store/api/playlists/playlist.api';
+import { TrackItem } from '../../shared/ui/Track/Track';
+import { useGetPlaylistQuery } from '../../store/api/playlists/playlists.api';
 
 export const PlaylistPage = () => {
   const { id } = useParams<'id'>();

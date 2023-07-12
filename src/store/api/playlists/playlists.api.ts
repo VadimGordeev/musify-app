@@ -21,8 +21,13 @@ export const playlistsApi = baseApi.injectEndpoints({
           currentCache.items.push(...newItems.items);
         }
       }
-    )
+    ),
+    getPlaylist: build.query<Playlist, { id: string }>({
+      query: ({ id }) => ({
+        url: `playlists/${id}`
+      })
+    })
   })
 });
 
-export const { useGetPlaylistsQuery } = playlistsApi;
+export const { useGetPlaylistsQuery, useGetPlaylistQuery } = playlistsApi;
