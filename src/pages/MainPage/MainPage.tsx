@@ -1,5 +1,5 @@
 import styles from './MainPage.module.scss';
-import { Card } from '../../features/MainSection/Card/Card';
+import { Card } from '../../shared/ui/Card/Card';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { useGetNewReleasesQuery } from '../../store/api/browse/browse.api';
 import { useGetUserRecommendationQuery } from '../../store/api/user/user.api';

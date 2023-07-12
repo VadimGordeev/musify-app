@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 import styles from './Library.module.scss';
 import { Button } from '../../shared/ui/Button/Button';
+import { Card } from '../../shared/ui/Card/Card';
+import { TrackItem } from '../../shared/ui/Track/Track';
 import {
   useGetRecentlyPlayedTracksQuery,
   useGetUserPlaylistsQuery,
   useGetUserSavedAlbumsQuery
 } from '../../store/api/user/user.api';
-import { Card } from '../MainSection/Card/Card';
-import { TrackItem } from '../MainSection/Track/Track';
 
 const TAB = {
   All: 'all',

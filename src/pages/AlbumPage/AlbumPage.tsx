@@ -4,8 +4,8 @@ import { ReactComponent as Cover } from '~/assets/cover.svg';
 import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
 
 import styles from './AlbumPage.module.scss';
-import { TrackItem } from '../../features/MainSection/Track/Track';
 import { Loader } from '../../shared/ui/Loader/Loader';
+import { TrackItem } from '../../shared/ui/Track/Track';
 import { useGetAlbumQuery } from '../../store/api/album/album.api';
 
 export const AlbumPage = () => {

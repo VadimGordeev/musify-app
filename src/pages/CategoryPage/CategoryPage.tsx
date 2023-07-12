@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import styles from './CategoryPage.module.scss';
-import { Card } from '../../features/MainSection/Card/Card';
+import { Card } from '../../shared/ui/Card/Card';
 import {
   useGetCategoryPlaylistsQuery,
   useGetCategoryQuery
