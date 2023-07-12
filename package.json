@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "musyfi-app",
+  "name": "musify-app",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
