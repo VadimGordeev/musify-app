@@ -34,7 +34,8 @@
     }
     .statistics {
       display: flex;
-      .tracks_quantity {
+      .tracks_quantity,
+      .date {
         font-size: 0.875rem;
         margin: 0;
         color: var(--text-grey);
