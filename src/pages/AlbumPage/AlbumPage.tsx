@@ -1,3 +1,4 @@
+import { getYear } from 'date-fns';
 import { NavLink, useParams } from 'react-router-dom';
 
 import { ReactComponent as Cover } from '~/assets/cover.svg';
@@ -34,6 +35,9 @@ export const AlbumPage = () => {
             >
               {data.artists[0].name}
             </NavLink>
+            <p className={styles.date}>
+              {getYear(new Date(data.release_date))}
+            </p>
             <p className={styles.tracks_quantity}>
               {data.tracks.items.length} tracks
             </p>
