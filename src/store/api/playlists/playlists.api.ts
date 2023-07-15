@@ -6,28 +6,77 @@ interface PlaylistResponse {
   total: number;
 }
 
+interface EditPlaylistTextPayload {
+  name: string;
+  description: string;
+}
+
 export const playlistsApi = baseApi.injectEndpoints({
   overrideExisting: false,
   endpoints: (build) => ({
+    getPlaylist: build.query<Playlist, { id: string }>({
+      providesTags: [{ type: 'PLAYLIST', id: 'PLAYLIST' }],
+      query: ({ id }) => ({
+        url: `playlists/${id}`
+      })
+    }),
+    editPlaylistText: build.mutation<
+      { EditPlaylistResponse: string },
+      { id: string; payload: EditPlaylistTextPayload }
+    >({
+      query: ({ id, payload }) => ({
+        url: `playlists/${id}`,
+        method: 'PUT',
+        body: payload
+      }),
+      invalidatesTags: [
+        { type: 'PLAYLIST', id: 'PLAYLIST' },
+        { type: 'PLAYLISTS', id: 'PLAYLISTS' }
+      ]
+    }),
+    editPlaylistImage: build.mutation<
+      { EditPlaylistResponse: string },
+      { id: string; image: string }
+    >({
+      query: ({ id, image }) => ({
+        url: `playlists/${id}/images`,
+        method: 'PUT',
+        headers: {
+          'content-type': 'image/jpeg'
+        },
+        body: image
+      }),
+      invalidatesTags: [
+        { type: 'PLAYLIST', id: 'PLAYLIST' },
+        { type: 'PLAYLISTS', id: 'PLAYLISTS' }
+      ]
+    }),
+    createPlaylist: build.mutation<{ name: string }, { id: string }>({
+      invalidatesTags: [{ type: 'PLAYLISTS', id: 'PLAYLISTS' }],
+      query: ({ id }) => ({
+        url: `/users/${id}/playlists`,
+        method: 'POST',
+        body: { name: 'New Playlist' }
+      })
+    }),
     getPlaylists: build.query<PlaylistResponse, { id: string; limit?: number }>(
       {
+        providesTags: [{ type: 'PLAYLISTS', id: 'PLAYLISTS' }],
         query: ({ id, limit }) => ({
           url: `/users/${id}/playlists`,
           params: {
             limit: limit ?? 20
           }
-        }),
-        merge: (currentCache, newItems) => {
-          currentCache.items.push(...newItems.items);
-        }
+        })
       }
-    ),
-    getPlaylist: build.query<Playlist, { id: string }>({
-      query: ({ id }) => ({
-        url: `playlists/${id}`
-      })
-    })
+    )
   })
 });
 
-export const { useGetPlaylistsQuery, useGetPlaylistQuery } = playlistsApi;
+export const {
+  useGetPlaylistsQuery,
+  useGetPlaylistQuery,
+  useEditPlaylistTextMutation,
+  useEditPlaylistImageMutation,
+  useCreatePlaylistMutation
+} = playlistsApi;

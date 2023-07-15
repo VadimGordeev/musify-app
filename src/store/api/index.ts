@@ -4,6 +4,7 @@ import { SPOTIFY_URL } from '../../api/constant';
 
 export const baseApi = createApi({
   reducerPath: 'api',
+  tagTypes: ['PLAYLIST', 'PLAYLISTS'] as const,
   baseQuery: fetchBaseQuery({
     baseUrl: SPOTIFY_URL,
     prepareHeaders: (headers) => {
