@@ -20,6 +20,7 @@ html {
   background-color: var(--black);
   color: var(--white);
   hyphens: auto;
+  -webkit-hyphens: auto;
 }
 button {
   color: var(--white);
