@@ -16,6 +16,7 @@ export const Navbar = () => {
         <h3>Hello, {user?.display_name}</h3>
         <img src={imageUrl?.url} />
         <Button
+          appearance="primary"
           onClick={() => {
             dispatch(userActions.logout());
           }}

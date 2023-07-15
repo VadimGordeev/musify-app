@@ -68,6 +68,7 @@ export const PlaylistsBar = () => {
         </NavLink>
         <Button
           icon={<PlusIcon />}
+          appearance="secondary"
           onClick={() => void createPlaylist({ id })}
         />
       </div>
