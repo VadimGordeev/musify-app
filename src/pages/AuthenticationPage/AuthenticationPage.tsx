@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Loader } from '../../shared/ui/Loader/Loader';
 
-export const Auth = () => {
+export const AuthenticationPage = () => {
   const { hash } = useLocation();
   const navigate = useNavigate();
 

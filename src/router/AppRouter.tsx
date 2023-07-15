@@ -6,7 +6,7 @@ import { MainSection } from '../features/MainSection/MainSection';
 import { MainLayout } from '../layouts/MainLayout/MainLayout';
 import { AlbumPage } from '../pages/AlbumPage/AlbumPage';
 import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
-import { Auth } from '../pages/Auth/Auth';
+import { AuthenticationPage } from '../pages/AuthenticationPage/AuthenticationPage';
 import { CategoryPage } from '../pages/CategoryPage/CategoryPage';
 import { LibraryPage } from '../pages/LibraryPage/LibraryPage';
 import { MainPage } from '../pages/MainPage/MainPage';
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/auth',
-    Component: Auth
+    Component: AuthenticationPage
   },
   {
     path: '/loader',
