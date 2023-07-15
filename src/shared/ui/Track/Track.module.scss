@@ -5,9 +5,22 @@
   justify-content: space-between;
   align-items: center;
   opacity: 0.7;
+  .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
   &:hover {
     opacity: 1;
     cursor: pointer;
+    .play {
+      display: block;
+    }
+    .index {
+      font-size: 0px;
+    }
   }
   span,
   div {
@@ -33,6 +46,7 @@
     }
   }
   .index {
+    position: relative;
     width: 20px;
   }
   .title {

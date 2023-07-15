@@ -1,8 +1,11 @@
 import { intervalToDuration } from 'date-fns';
 import { NavLink } from 'react-router-dom';
 
+import { ReactComponent as Play } from '~/assets/icons/play.svg';
+
 import styles from './Track.module.scss';
 import { type Track } from '../../../entities/spotifyTypes';
+import { Button } from '../Button/Button';
 
 const getFormattedUnit = (value: number): string => {
   return value > 9 ? `${value}` : `0${value}`;
@@ -22,7 +25,14 @@ const getFormattedTrackDuration = (songDuration: number): string => {
 export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
   return (
     <div className={styles.container}>
-      <span className={styles.index}>{index + 1}</span>
+      <p className={styles.index}>
+        {index + 1}
+        <Button
+          appearance="secondary"
+          icon={<Play />}
+          className={styles.play}
+        />
+      </p>
       <div className={styles.title}>
         {item.album && <img src={item.album.images[0].url} />}
         <div className={styles.info}>
