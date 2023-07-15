@@ -1,30 +1,69 @@
+import { useState } from 'react';
+
+import classNames from 'classnames';
 import { useParams } from 'react-router-dom';
 
 import { ReactComponent as Cover } from '~/assets/cover.svg';
 import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
 
 import styles from './PlaylistPage.module.scss';
+import { EditPlaylist } from '../../features/CreatePlaylist/EditPlaylist';
+import { Button } from '../../shared/ui/Button/Button';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
 import { useGetPlaylistQuery } from '../../store/api/playlists/playlists.api';
+import { useAppSelector } from '../../store/store.types';
+import { selectUser } from '../../store/user/user.selector';
+
+export const modals = {
+  disable: 'disable',
+  image: 'image',
+  text: 'text'
+} as const;
+
+export type ModalState = (typeof modals)[keyof typeof modals];
 
 export const PlaylistPage = () => {
-  const { id } = useParams<'id'>();
+  const [modalState, setIsModalState] = useState<ModalState>(modals.disable);
 
+  const { id } = useParams<'id'>();
   const { data } = useGetPlaylistQuery({ id: id || '' });
+  const user = useAppSelector(selectUser);
+  const closeModal = () => {
+    setIsModalState(modals.disable);
+  };
 
   return data ? (
     <div className={styles.container}>
       <div className={styles.playlist_info}>
-        {data.images.length > 0 ? (
-          <img
-            className={styles.cover}
-            src={data.images[0].url}
-          />
-        ) : (
-          <Cover className={styles.cover} />
-        )}
+        <div
+          className={`${classNames({
+            [styles.cover]: true,
+            [styles.user]: user?.display_name === data.owner.display_name
+          })}`}
+          onClick={() =>
+            user?.display_name === data.owner.display_name
+              ? setIsModalState(modals.image)
+              : ''
+          }
+        >
+          <p>Edit</p>
+          {data.images.length > 0 ? (
+            <img
+              className={styles.cover}
+              src={data.images[0].url}
+            />
+          ) : (
+            <Cover className={styles.cover} />
+          )}
+        </div>
+
         <div className={styles.text_info}>
+          {user?.display_name === data.owner.display_name && (
+            <div className={styles.edit_btn}>
+              <Button onClick={() => setIsModalState(modals.text)}>Edit</Button>
+            </div>
+          )}
           <p className={styles.type}>{data.type}</p>
           <p className={styles.name}>{data.name}</p>
           {data.description && (
@@ -59,6 +98,21 @@ export const PlaylistPage = () => {
           })}
         </div>
       </div>
+      {modalState === modals.image ? (
+        <EditPlaylist
+          playlist={data}
+          onClick={closeModal}
+          state={modalState}
+        />
+      ) : modalState === modals.text ? (
+        <EditPlaylist
+          playlist={data}
+          onClick={closeModal}
+          state={modalState}
+        />
+      ) : (
+        ''
+      )}
     </div>
   ) : (
     <Loader />

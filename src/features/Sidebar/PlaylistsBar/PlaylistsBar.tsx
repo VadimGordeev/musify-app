@@ -10,7 +10,10 @@ import { PlaylistsCard } from './Playlists/Playlists';
 import styles from './PlaylistsBar.module.scss';
 import { Button } from '../../../shared/ui/Button/Button';
 import { Loader } from '../../../shared/ui/Loader/Loader';
-import { useGetPlaylistsQuery } from '../../../store/api/playlists/playlists.api';
+import {
+  useCreatePlaylistMutation,
+  useGetPlaylistsQuery
+} from '../../../store/api/playlists/playlists.api';
 import { useAppSelector } from '../../../store/store.types';
 import { userId } from '../../../store/user/user.selector';
 
@@ -20,6 +23,8 @@ export const PlaylistsBar = () => {
 
   const { data, isFetching } = useGetPlaylistsQuery({ id, limit });
 
+  const [createPlaylist] = useCreatePlaylistMutation();
+
   useEffect(() => {
     const bar = document.querySelector('#bar');
     if (bar) {
@@ -28,8 +33,13 @@ export const PlaylistsBar = () => {
           bar.scrollTop >=
           Number.parseInt(window.getComputedStyle(bar, null).height);
 
-        if (isScrolledToBottom && !isFetching && data && limit <= data.total) {
-          setLimit(data.items.length + limit);
+        if (isScrolledToBottom && !isFetching && data && limit < data.total) {
+          const newLimit = data.total - limit;
+          if (newLimit < limit) {
+            setLimit(data.items.length + newLimit);
+          } else {
+            setLimit(data.items.length + limit);
+          }
         }
       };
 
@@ -56,11 +66,14 @@ export const PlaylistsBar = () => {
           <LibraryIcon />
           Your Library
         </NavLink>
-        <Button icon={<PlusIcon />} />
+        <Button
+          icon={<PlusIcon />}
+          onClick={() => void createPlaylist({ id })}
+        />
       </div>
       <div className={styles.playlists_container}>
         {data ? (
-          data.items.map((card) => {
+          [...data.items].map((card) => {
             return (
               <PlaylistsCard
                 key={card.id}
