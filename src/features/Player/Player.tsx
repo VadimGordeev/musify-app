@@ -14,6 +14,7 @@ export const Player = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.empty}></div>
       <div className={styles.player}>
         <div className={styles.playerbtn}>
           <img
@@ -50,17 +51,17 @@ export const Player = () => {
           ></input>
           <span className={styles.total_time}>0:00</span>
         </div>
-        <div className={styles.volume}>
-          <input
-            type="range"
-            className={styles.slider_volume}
-            min="0"
-            max="100"
-            step="1"
-            value={volume}
-            onChange={({ target: { value } }) => setVolume(value)}
-          ></input>
-        </div>
+      </div>
+      <div className={styles.volume}>
+        <input
+          type="range"
+          className={styles.slider_volume}
+          min="0"
+          max="100"
+          step="1"
+          value={volume}
+          onChange={({ target: { value } }) => setVolume(value)}
+        ></input>
       </div>
     </div>
   );

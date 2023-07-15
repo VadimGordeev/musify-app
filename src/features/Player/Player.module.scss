@@ -5,8 +5,11 @@
   bottom: 0;
   background-color: var(--black);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+.empty {
+  width: 100px;
 }
 .player {
   display: flex;
@@ -52,7 +55,7 @@
 }
 .slider_time:hover,
 .slider_volume:hover {
-    background-color: #1bd760;
+  background-color: #1bd760;
 }
 .slider_time,
 .slider_volume {
@@ -84,4 +87,3 @@
 .slider_time:focus::-webkit-slider-runnable-track {
   background: #ccc;
 }
-
