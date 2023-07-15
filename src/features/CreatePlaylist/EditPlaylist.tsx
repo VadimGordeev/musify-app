@@ -70,6 +70,7 @@ export const EditPlaylist = ({
         </div>
         {state === modals.image ? (
           <form
+            className={styles.form}
             id="playlistModal"
             onSubmit={(event) => {
               event.preventDefault();
@@ -95,6 +96,7 @@ export const EditPlaylist = ({
           </form>
         ) : (
           <form
+            className={styles.form}
             id="playlistModal"
             onSubmit={(event) => {
               event.preventDefault();
