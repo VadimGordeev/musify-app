@@ -7,7 +7,7 @@ import { ReactComponent as Cover } from '~/assets/cover.svg';
 import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
 
 import styles from './PlaylistPage.module.scss';
-import { EditPlaylist } from '../../features/CreatePlaylist/EditPlaylist';
+import { EditPlaylist } from '../../features/EditPlaylist/EditPlaylist';
 import { Button } from '../../shared/ui/Button/Button';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';

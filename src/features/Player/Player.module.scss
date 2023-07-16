@@ -87,3 +87,15 @@
 .slider_time:focus::-webkit-slider-runnable-track {
   background: #ccc;
 }
+
+@media only screen and (max-width: 700px) {
+  .container {
+    justify-content: center;
+  }
+  .empty {
+    display: none;
+  }
+  .volume {
+    display: none;
+  }
+}
