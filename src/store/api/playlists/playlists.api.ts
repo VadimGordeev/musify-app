@@ -59,6 +59,28 @@ export const playlistsApi = baseApi.injectEndpoints({
         body: { name: 'New Playlist' }
       })
     }),
+    // eslint-disable-next-line @typescript-eslint/naming-convention -- Api requires
+    followPlaylist: build.mutation<{ public: boolean }, { id: string }>({
+      invalidatesTags: [
+        { type: 'PLAYLIST', id: 'PLAYLIST' },
+        { type: 'PLAYLISTS', id: 'PLAYLISTS' }
+      ],
+      query: ({ id }) => ({
+        url: `playlists/${id}/followers`,
+        method: 'PUT',
+        body: { public: true }
+      })
+    }),
+    unfollowPlaylist: build.mutation<{ isSuccess: boolean }, { id: string }>({
+      invalidatesTags: [
+        { type: 'PLAYLIST', id: 'PLAYLIST' },
+        { type: 'PLAYLISTS', id: 'PLAYLISTS' }
+      ],
+      query: ({ id }) => ({
+        url: `playlists/${id}/followers`,
+        method: 'DELETE'
+      })
+    }),
     getPlaylists: build.query<PlaylistResponse, { id: string; limit?: number }>(
       {
         providesTags: [{ type: 'PLAYLISTS', id: 'PLAYLISTS' }],
@@ -78,5 +100,7 @@ export const {
   useGetPlaylistQuery,
   useEditPlaylistTextMutation,
   useEditPlaylistImageMutation,
-  useCreatePlaylistMutation
+  useCreatePlaylistMutation,
+  useFollowPlaylistMutation,
+  useUnfollowPlaylistMutation
 } = playlistsApi;
