@@ -1,6 +1,6 @@
 import { ReactComponent as User } from '~/assets/icons/user.svg';
 
-import { MenuButton } from './MenuButton';
+import { MenuButton } from './MenuButton/MenuButton';
 import styles from './Navbar.module.scss';
 import { Button } from '../../../shared/ui/Button/Button';
 import { useAppDispatch, useAppSelector } from '../../../store/store.types';
