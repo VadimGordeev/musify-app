@@ -14,12 +14,15 @@ import {
   useCreatePlaylistMutation,
   useGetPlaylistsQuery
 } from '../../../store/api/playlists/playlists.api';
-import { useAppSelector } from '../../../store/store.types';
+import { MenuState } from '../../../store/menu/menu.constants';
+import { menuActions } from '../../../store/menu/menu.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/store.types';
 import { userId } from '../../../store/user/user.selector';
 
 export const PlaylistsBar = () => {
   const [limit, setLimit] = useState(20);
   const id = useAppSelector(userId);
+  const dispatch = useAppDispatch();
 
   const { data, isFetching } = useGetPlaylistsQuery({ id, limit });
 
@@ -62,6 +65,7 @@ export const PlaylistsBar = () => {
             classNames({ [styles.active]: isActive, [styles.link]: true })
           }
           to={'/library'}
+          onClick={() => dispatch(menuActions.changeState(MenuState.Close))}
         >
           <LibraryIcon />
           Your Library
