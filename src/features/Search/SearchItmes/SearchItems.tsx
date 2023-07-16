@@ -4,9 +4,9 @@ import {
   type Artist,
   type Playlist,
   type Track
-} from '../../entities/spotifyTypes';
-import { Card } from '../../shared/ui/Card/Card';
-import { TrackItem } from '../../shared/ui/Track/Track';
+} from '../../../entities/spotifyTypes';
+import { Card } from '../../../shared/ui/Card/Card';
+import { TrackItem } from '../../../shared/ui/Track/Track';
 
 export const SearchItems = ({
   albums,

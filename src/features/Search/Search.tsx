@@ -1,7 +1,7 @@
 import { type ChangeEvent, useState } from 'react';
 
 import styles from './Search.module.scss';
-import { SearchItems } from './SearchItems';
+import { SearchItems } from './SearchItmes/SearchItems';
 import { useDebounce } from '../../shared/hooks/useDebounce';
 import { CategoryCard } from '../../shared/ui/Category/CategoryCard';
 import { InputField } from '../../shared/ui/InputField/InputField';

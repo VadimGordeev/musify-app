@@ -12,7 +12,6 @@ import { LibraryPage } from '../pages/LibraryPage/LibraryPage';
 import { MainPage } from '../pages/MainPage/MainPage';
 import { PlaylistPage } from '../pages/PlaylistPage/PlaylistPage';
 import { SearchPage } from '../pages/SearchPage/SearchPage';
-import { Loader } from '../shared/ui/Loader/Loader';
 import { useAppDispatch } from '../store/store.types';
 import { fetchUser } from '../store/user/user.api';
 
@@ -63,10 +62,6 @@ const router = createBrowserRouter([
   {
     path: '/auth',
     Component: AuthenticationPage
-  },
-  {
-    path: '/loader',
-    Component: Loader
   }
 ]);
 
