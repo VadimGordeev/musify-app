@@ -21,11 +21,12 @@
     flex-direction: column;
     justify-content: flex-end;
     gap: 20px;
-    .edit_btn {
+    .btn_container {
       height: 50px;
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
+      gap: 10px;
     }
     .type {
       text-transform: capitalize;

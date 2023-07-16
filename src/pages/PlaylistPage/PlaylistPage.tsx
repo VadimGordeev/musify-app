@@ -11,7 +11,11 @@ import { EditPlaylist } from '../../features/EditPlaylist/EditPlaylist';
 import { Button } from '../../shared/ui/Button/Button';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
-import { useGetPlaylistQuery } from '../../store/api/playlists/playlists.api';
+import {
+  useFollowPlaylistMutation,
+  useGetPlaylistQuery,
+  useUnfollowPlaylistMutation
+} from '../../store/api/playlists/playlists.api';
 import { useAppSelector } from '../../store/store.types';
 import { selectUser } from '../../store/user/user.selector';
 
@@ -32,7 +36,8 @@ export const PlaylistPage = () => {
   const closeModal = () => {
     setIsModalState(modals.disable);
   };
-
+  const [followPlaylist] = useFollowPlaylistMutation();
+  const [unfollowPlatlist] = useUnfollowPlaylistMutation();
   return data ? (
     <div className={styles.container}>
       <div className={styles.playlist_info}>
@@ -59,11 +64,17 @@ export const PlaylistPage = () => {
         </div>
 
         <div className={styles.text_info}>
-          {user?.display_name === data.owner.display_name && (
-            <div className={styles.edit_btn}>
+          <div className={styles.btn_container}>
+            {user?.display_name === data.owner.display_name && (
               <Button onClick={() => setIsModalState(modals.text)}>Edit</Button>
-            </div>
-          )}
+            )}
+            <Button onClick={() => void followPlaylist({ id: id || '' })}>
+              Follow
+            </Button>
+            <Button onClick={() => void unfollowPlatlist({ id: id || '' })}>
+              Unfollow
+            </Button>
+          </div>
           <p className={styles.type}>{data.type}</p>
           <p className={styles.name}>{data.name}</p>
           {data.description && (
