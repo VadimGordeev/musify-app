@@ -1,3 +1,5 @@
+import { ReactComponent as User } from '~/assets/icons/user.svg';
+
 import styles from './Navbar.module.scss';
 import { Button } from '../../../shared/ui/Button/Button';
 import { useAppDispatch, useAppSelector } from '../../../store/store.types';
@@ -8,13 +10,19 @@ export const Navbar = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
-  const imageUrl = user?.images[0];
-
   return (
     <div className={styles.container}>
       <div className={styles.user_container}>
         <h3>Hello, {user?.display_name}</h3>
-        <img src={imageUrl?.url} />
+        {user && user?.images.length > 0 ? (
+          <img
+            src={user?.images[0].url}
+            className={styles.user_image}
+          />
+        ) : (
+          <User className={styles.user_image} />
+        )}
+
         <Button
           appearance="primary"
           onClick={() => {
