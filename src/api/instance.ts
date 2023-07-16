@@ -11,7 +11,7 @@ export const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const accessToken = localStorage.getItem('spotify/access-token');
   if (!accessToken) {
-    throw new Error('UnauthorizedQ');
+    throw new Error('Unauthorized');
   }
   config.headers.set('Authorization', `Bearer ${accessToken}`);
   return config;
