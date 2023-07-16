@@ -1,5 +1,6 @@
 import { ReactComponent as User } from '~/assets/icons/user.svg';
 
+import { MenuButton } from './MenuButton';
 import styles from './Navbar.module.scss';
 import { Button } from '../../../shared/ui/Button/Button';
 import { useAppDispatch, useAppSelector } from '../../../store/store.types';
@@ -12,6 +13,7 @@ export const Navbar = () => {
 
   return (
     <div className={styles.container}>
+      <MenuButton />
       <div className={styles.user_container}>
         <h3>Hello, {user?.display_name}</h3>
         {user && user?.images.length > 0 ? (

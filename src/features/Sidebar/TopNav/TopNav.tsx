@@ -5,10 +5,12 @@ import { ReactComponent as HomeIcon } from '~/assets/icons/home.svg';
 import { ReactComponent as SearchIcon } from '~/assets/icons/search.svg';
 
 import styles from './TopNav.module.scss';
+import { MenuButton } from '../../MainSection/Navbar/MenuButton';
 
 export const TopNav = () => {
   return (
     <div className={styles.container}>
+      <MenuButton />
       <NavLink
         to="/"
         className={({ isActive }) =>
