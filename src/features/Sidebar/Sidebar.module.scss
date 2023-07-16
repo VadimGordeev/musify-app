@@ -1,13 +1,13 @@
 .container {
   flex: 0.3;
   overflow-y: auto;
-  display: flex;
+  display: none;
   flex-direction: column;
   height: 90vh;
   height: 90dvh;
   gap: 0.5rem;
   &[data-open='true'] {
-    max-width: 5%;
+    display: flex;
     transition: all 0.3s;
   }
 }

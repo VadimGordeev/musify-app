@@ -4,7 +4,10 @@ import { TopNav } from './TopNav/TopNav';
 
 export const Sidebar = () => {
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      id="sidebar"
+    >
       <TopNav />
       <PlaylistsBar />
     </div>
