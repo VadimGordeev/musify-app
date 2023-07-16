@@ -5,7 +5,10 @@ import { Navbar } from './Navbar/Navbar';
 
 export const MainSection = () => {
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      id="main"
+    >
       <Navbar />
       <Outlet />
     </div>

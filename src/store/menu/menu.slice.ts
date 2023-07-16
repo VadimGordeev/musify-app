@@ -22,8 +22,11 @@ startAppListening({
   matcher: appMenuSlice.actions.changeState.match,
   effect: ({ payload }) => {
     const sidebar = document.querySelector('#sidebar') as HTMLElement;
-    if (sidebar) {
+    const main = document.querySelector('#main') as HTMLElement;
+
+    if (sidebar && main) {
       sidebar.dataset.open = payload === MenuState.Open ? 'true' : 'false';
+      main.dataset.open = payload === MenuState.Open ? 'true' : 'false';
     }
   }
 });
