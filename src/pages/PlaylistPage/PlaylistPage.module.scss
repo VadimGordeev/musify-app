@@ -121,11 +121,12 @@
   }
   .playlist_info {
     flex-direction: column;
-    align-items: center;
-  }
-  .text_info {
-    .edit_btn {
-      order: 2;
+    .text_info {
+      .edit_btn {
+        order: 2;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
     }
   }
   .header {
