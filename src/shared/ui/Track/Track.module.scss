@@ -58,8 +58,13 @@
       flex-direction: column;
     }
   }
-  .album,
-  .date {
+  .album {
     width: 17%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .album {
+    display: none;
   }
 }

@@ -8,7 +8,7 @@ import styles from './TopNav.module.scss';
 import { MenuState } from '../../../store/menu/menu.constants';
 import { menuActions } from '../../../store/menu/menu.slice';
 import { useAppDispatch } from '../../../store/store.types';
-import { MenuButton } from '../../MainSection/Navbar/MenuButton';
+import { MenuButton } from '../../MainSection/Navbar/MenuButton/MenuButton';
 
 export const TopNav = () => {
   const dispatch = useAppDispatch();
