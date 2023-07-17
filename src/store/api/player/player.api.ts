@@ -8,7 +8,7 @@ interface DevicesResponse {
   devices: [Device];
 }
 interface PlayPayload {
-  id: string;
+  id?: string;
   uris?: string;
 }
 
@@ -39,11 +39,31 @@ export const playerApi = baseApi.injectEndpoints({
         }
       })
     }),
-    pause: build.mutation<void, { id: string }>({
+    pause: build.mutation<void, { id?: string }>({
       invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
       query: ({ id }) => ({
         url: '/me/player/pause',
         method: 'PUT',
+        params: {
+          device_id: id
+        }
+      })
+    }),
+    skipToNext: build.mutation<void, { id?: string }>({
+      invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
+      query: ({ id }) => ({
+        url: '/me/player/next',
+        method: 'POST',
+        params: {
+          device_id: id
+        }
+      })
+    }),
+    skipToPrevious: build.mutation<void, { id?: string }>({
+      invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
+      query: ({ id }) => ({
+        url: '/me/player/previous',
+        method: 'POST',
         params: {
           device_id: id
         }
@@ -56,5 +76,7 @@ export const {
   useGetDevicesQuery,
   useStartPlayMutation,
   useGetPlaybackStateQuery,
-  usePauseMutation
+  usePauseMutation,
+  useSkipToNextMutation,
+  useSkipToPreviousMutation
 } = playerApi;
