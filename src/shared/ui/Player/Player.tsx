@@ -29,7 +29,14 @@ export const Player = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.empty}></div>
+      <div className={styles.empty}>
+        {playbackState?.item && (
+          <div className={styles.song}>
+            <img src={playbackState.item.album.images[0].url} />
+            <p>{playbackState.item.name}</p>
+          </div>
+        )}
+      </div>
       <div className={styles.player}>
         <div className={styles.playerbtn}>
           <Button
