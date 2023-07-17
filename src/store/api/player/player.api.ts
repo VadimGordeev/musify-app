@@ -1,23 +1,33 @@
 import { baseApi } from '..';
-import { type Device } from '../../../entities/spotifyTypes';
+import {
+  type PlaybackState,
+  type Device
+} from '../../../entities/spotifyTypes';
 
 interface DevicesResponse {
   devices: [Device];
 }
 interface PlayPayload {
   id: string;
-  uris: string;
+  uris?: string;
 }
 
 export const playerApi = baseApi.injectEndpoints({
   overrideExisting: false,
   endpoints: (build) => ({
+    getPlaybackState: build.query<PlaybackState, void>({
+      providesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
+      query: () => ({
+        url: '/me/player'
+      })
+    }),
     getDevices: build.query<DevicesResponse, void>({
       query: () => ({
         url: '/me/player/devices'
       })
     }),
     startPlay: build.mutation<void, PlayPayload>({
+      invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
       query: ({ id, uris }) => ({
         url: '/me/player/play',
         method: 'PUT',
@@ -28,8 +38,23 @@ export const playerApi = baseApi.injectEndpoints({
           uris: [uris]
         }
       })
+    }),
+    pause: build.mutation<void, { id: string }>({
+      invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
+      query: ({ id }) => ({
+        url: '/me/player/pause',
+        method: 'PUT',
+        params: {
+          device_id: id
+        }
+      })
     })
   })
 });
 
-export const { useGetDevicesQuery, useStartPlayMutation } = playerApi;
+export const {
+  useGetDevicesQuery,
+  useStartPlayMutation,
+  useGetPlaybackStateQuery,
+  usePauseMutation
+} = playerApi;

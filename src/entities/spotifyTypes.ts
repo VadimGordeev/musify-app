@@ -151,3 +151,9 @@ export interface Device {
   type: string;
   volume_percent: number;
 }
+
+export interface PlaybackState {
+  device: Device;
+  is_playing: boolean;
+  item: Track;
+}

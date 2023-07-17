@@ -4,14 +4,24 @@ import { ReactComponent as PlayIcon } from '~/assets/icons//btn/play.svg';
 import { ReactComponent as DeviceIcon } from '~/assets/icons/btn/airplay.svg';
 import { ReactComponent as BackIcon } from '~/assets/icons/btn/back.svg';
 import { ReactComponent as ForwardIcon } from '~/assets/icons/btn/forward.svg';
+import { ReactComponent as PauseIcon } from '~/assets/icons/btn/pause.svg';
 import { ReactComponent as VolumeIcon } from '~/assets/icons/volume.svg';
 
 import styles from './Player.module.scss';
+import {
+  useGetPlaybackStateQuery,
+  usePauseMutation,
+  useStartPlayMutation
+} from '../../../store/api/player/player.api';
 import { Button } from '../Button/Button';
 
 export const Player = () => {
   const [time, setTime] = useState('');
   const [volume, setVolume] = useState('');
+
+  const { data: playbackState } = useGetPlaybackStateQuery();
+  const [startPlay] = useStartPlayMutation();
+  const [pause] = usePauseMutation();
 
   return (
     <div className={styles.container}>
@@ -24,9 +34,17 @@ export const Player = () => {
             className={styles.previous}
           />
           <Button
-            icon={<PlayIcon />}
+            icon={playbackState?.is_playing ? <PauseIcon /> : <PlayIcon />}
             appearance="secondary"
             className={styles.play}
+            onClick={() =>
+              playbackState?.is_playing
+                ? void pause({ id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e' })
+                : void startPlay({
+                    id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e',
+                    uris: playbackState?.item.uri
+                  })
+            }
           />
           <Button
             icon={<ForwardIcon />}
