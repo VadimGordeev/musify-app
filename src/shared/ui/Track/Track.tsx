@@ -5,6 +5,7 @@ import { ReactComponent as Play } from '~/assets/icons/play.svg';
 
 import styles from './Track.module.scss';
 import { type Track } from '../../../entities/spotifyTypes';
+import { useStartPlayMutation } from '../../../store/api/player/player.api';
 import { Button } from '../Button/Button';
 
 const getFormattedUnit = (value: number): string => {
@@ -23,6 +24,8 @@ const getFormattedTrackDuration = (songDuration: number): string => {
 };
 
 export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
+  const [startPlay] = useStartPlayMutation();
+
   return (
     <div className={styles.container}>
       <p className={styles.index}>
@@ -31,6 +34,12 @@ export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
           appearance="secondary"
           icon={<Play />}
           className={styles.play}
+          onClick={() =>
+            void startPlay({
+              id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e',
+              uris: item.uri
+            })
+          }
         />
       </p>
       <div className={styles.title}>
