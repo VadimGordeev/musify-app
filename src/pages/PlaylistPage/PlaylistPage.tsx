@@ -12,12 +12,13 @@ import { Button } from '../../shared/ui/Button/Button';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
 import {
+  useCheckUserFollowPlaylistQuery,
   useFollowPlaylistMutation,
   useGetPlaylistQuery,
   useUnfollowPlaylistMutation
 } from '../../store/api/playlists/playlists.api';
 import { useAppSelector } from '../../store/store.types';
-import { selectUser } from '../../store/user/user.selector';
+import { selectUser, userId } from '../../store/user/user.selector';
 
 export const modals = {
   disable: 'disable',
@@ -33,11 +34,18 @@ export const PlaylistPage = () => {
   const { id } = useParams<'id'>();
   const { data } = useGetPlaylistQuery({ id: id || '' });
   const user = useAppSelector(selectUser);
+  const userID = useAppSelector(userId);
   const closeModal = () => {
     setIsModalState(modals.disable);
   };
   const [followPlaylist] = useFollowPlaylistMutation();
   const [unfollowPlatlist] = useUnfollowPlaylistMutation();
+
+  const { data: isFollow } = useCheckUserFollowPlaylistQuery({
+    id: id || '',
+    ids: userID
+  });
+
   return data ? (
     <div className={styles.container}>
       <div className={styles.playlist_info}>
@@ -68,12 +76,23 @@ export const PlaylistPage = () => {
             {user?.display_name === data.owner.display_name && (
               <Button onClick={() => setIsModalState(modals.text)}>Edit</Button>
             )}
-            <Button onClick={() => void followPlaylist({ id: id || '' })}>
+            {isFollow && (
+              <Button
+                onClick={() =>
+                  isFollow[0]
+                    ? void unfollowPlatlist({ id: id || '' })
+                    : void followPlaylist({ id: id || '' })
+                }
+              >
+                {isFollow[0] ? 'Unfollow' : 'Follow'}
+              </Button>
+            )}
+            {/* <Button onClick={() => void followPlaylist({ id: id || '' })}>
               Follow
             </Button>
             <Button onClick={() => void unfollowPlatlist({ id: id || '' })}>
               Unfollow
-            </Button>
+            </Button> */}
           </div>
           <p className={styles.type}>{data.type}</p>
           <p className={styles.name}>{data.name}</p>
