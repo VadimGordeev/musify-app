@@ -141,3 +141,13 @@ export interface Category {
   id: string;
   name: string;
 }
+
+export interface Device {
+  id: string;
+  is_active: false;
+  is_private_session: false;
+  is_restricted: false;
+  name: string;
+  type: string;
+  volume_percent: number;
+}

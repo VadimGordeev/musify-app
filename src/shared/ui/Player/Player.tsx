@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-import loop from '~/assets/icons/loop.png';
-import next from '~/assets/icons/next_musicbar.png';
-import play from '~/assets/icons/play_musicbar.png';
-import previous from '~/assets/icons/previous_musicbar.png';
-import shuffle from '~/assets/icons/shuffle.png';
+import { ReactComponent as PlayIcon } from '~/assets/icons//btn/play.svg';
+import { ReactComponent as DeviceIcon } from '~/assets/icons/btn/airplay.svg';
+import { ReactComponent as BackIcon } from '~/assets/icons/btn/back.svg';
+import { ReactComponent as ForwardIcon } from '~/assets/icons/btn/forward.svg';
+import { ReactComponent as VolumeIcon } from '~/assets/icons/volume.svg';
 
 import styles from './Player.module.scss';
+import { Button } from '../Button/Button';
 
 export const Player = () => {
   const [time, setTime] = useState('');
@@ -17,25 +18,20 @@ export const Player = () => {
       <div className={styles.empty}></div>
       <div className={styles.player}>
         <div className={styles.playerbtn}>
-          <img
-            src={shuffle}
-            className={styles.shuffle}
-          />
-          <img
-            src={previous}
+          <Button
+            icon={<BackIcon />}
+            appearance="secondary"
             className={styles.previous}
           />
-          <img
-            src={play}
+          <Button
+            icon={<PlayIcon />}
+            appearance="secondary"
             className={styles.play}
           />
-          <img
-            src={next}
+          <Button
+            icon={<ForwardIcon />}
+            appearance="secondary"
             className={styles.next}
-          />
-          <img
-            src={loop}
-            className={styles.loop}
           />
         </div>
         <div className={styles.time}>
@@ -53,6 +49,11 @@ export const Player = () => {
         </div>
       </div>
       <div className={styles.volume}>
+        <Button
+          icon={<DeviceIcon />}
+          appearance="secondary"
+        />
+        <VolumeIcon />
         <input
           type="range"
           className={styles.slider_volume}

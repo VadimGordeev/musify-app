@@ -47,6 +47,8 @@
 .volume {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
   margin-right: 2rem;
 }
 .slider_volume {
