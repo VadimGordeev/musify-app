@@ -17,6 +17,18 @@
     flex-direction: column;
     justify-content: flex-end;
     gap: 20px;
+    .btn_container {
+      height: 50px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      .play {
+        &:hover {
+          background-color: var(--green);
+        }
+      }
+    }
     .type {
       text-transform: capitalize;
     }

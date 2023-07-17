@@ -3,16 +3,21 @@ import { NavLink, useParams } from 'react-router-dom';
 
 import { ReactComponent as Cover } from '~/assets/cover.svg';
 import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
+import { ReactComponent as PlayIcon } from '~/assets/icons/play.svg';
 
 import styles from './AlbumPage.module.scss';
+import { Button } from '../../shared/ui/Button/Button';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
 import { useGetAlbumQuery } from '../../store/api/album/album.api';
+import { useStartPlayAlbumMutation } from '../../store/api/player/player.api';
 
 export const AlbumPage = () => {
   const { id } = useParams<'id'>();
 
   const { data } = useGetAlbumQuery({ id: id || '' });
+
+  const [startPlay] = useStartPlayAlbumMutation();
 
   return data ? (
     <div className={styles.container}>
@@ -26,6 +31,13 @@ export const AlbumPage = () => {
           <Cover className={styles.cover} />
         )}
         <div className={styles.text_info}>
+          <div className={styles.btn_container}>
+            <Button
+              icon={<PlayIcon />}
+              className={styles.play}
+              onClick={() => void startPlay({ context_uri: data.uri })}
+            />
+          </div>
           <p className={styles.type}>{data.album_type}</p>
           <p className={styles.name}>{data.name}</p>
           <div className={styles.statistics}>

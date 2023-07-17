@@ -10,6 +10,7 @@ interface DevicesResponse {
 interface PlayPayload {
   id?: string;
   uris?: string;
+  context_uri?: string;
 }
 
 export const playerApi = baseApi.injectEndpoints({
@@ -28,14 +29,30 @@ export const playerApi = baseApi.injectEndpoints({
     }),
     startPlay: build.mutation<void, PlayPayload>({
       invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
-      query: ({ id, uris }) => ({
+      // eslint-disable-next-line @typescript-eslint/naming-convention -- Api requires
+      query: ({ id, uris, context_uri }) => ({
         url: '/me/player/play',
         method: 'PUT',
         params: {
           device_id: id
         },
         body: {
-          uris: [uris]
+          uris: [uris],
+          context_uri: context_uri
+        }
+      })
+    }),
+    startPlayAlbum: build.mutation<void, PlayPayload>({
+      invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
+      // eslint-disable-next-line @typescript-eslint/naming-convention -- Api requires
+      query: ({ id, context_uri }) => ({
+        url: '/me/player/play',
+        method: 'PUT',
+        params: {
+          device_id: id
+        },
+        body: {
+          context_uri: context_uri
         }
       })
     }),
@@ -78,5 +95,6 @@ export const {
   useGetPlaybackStateQuery,
   usePauseMutation,
   useSkipToNextMutation,
-  useSkipToPreviousMutation
+  useSkipToPreviousMutation,
+  useStartPlayAlbumMutation
 } = playerApi;
