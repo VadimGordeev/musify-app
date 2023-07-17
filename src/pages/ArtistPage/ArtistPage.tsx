@@ -1,14 +1,18 @@
 import { useParams } from 'react-router-dom';
 
 import styles from './ArtistPage.module.scss';
+import { Button } from '../../shared/ui/Button/Button';
 import { Card } from '../../shared/ui/Card/Card';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
 import {
+  useCheckIsUserFollowArtistQuery,
+  useFollowArtistMutation,
   useGetArtistAlbumsQuery,
   useGetArtistQuery,
   useGetArtistTopTracksQuery,
-  useGetRelatedArtistsQuery
+  useGetRelatedArtistsQuery,
+  useUnfollowArtistMutation
 } from '../../store/api/artist/artist.api';
 import { useAppSelector } from '../../store/store.types';
 import { selectUser } from '../../store/user/user.selector';
@@ -26,7 +30,10 @@ export const ArtistPage = () => {
   const { data: relatedArtistsData } = useGetRelatedArtistsQuery({
     id: id || ''
   });
+  const { data: isFollow } = useCheckIsUserFollowArtistQuery({ ids: id || '' });
 
+  const [followArtist] = useFollowArtistMutation();
+  const [unfollowArtist] = useUnfollowArtistMutation();
   return artistData && topTracksData && albumsData && relatedArtistsData ? (
     <div className={styles.container}>
       <div className={styles.artist_info}>
@@ -35,6 +42,19 @@ export const ArtistPage = () => {
           src={artistData.images[0].url}
         />
         <div className={styles.text_info}>
+          <div className={styles.btn_container}>
+            {isFollow && (
+              <Button
+                onClick={() =>
+                  isFollow[0]
+                    ? void unfollowArtist({ ids: id || '' })
+                    : void followArtist({ ids: id || '' })
+                }
+              >
+                {isFollow[0] ? 'Unfollow' : 'Follow'}
+              </Button>
+            )}
+          </div>
           <h1 className={styles.name}>{artistData.name}</h1>
           <span className={styles.followers}>
             {artistData.followers.total} followers

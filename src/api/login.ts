@@ -14,7 +14,9 @@ export const authSpotify = (): void => {
       'user-library-read',
       'user-read-recently-played',
       'playlist-modify-public',
-      'ugc-image-upload'
+      'ugc-image-upload',
+      'user-follow-read',
+      'user-follow-modify'
     ]
   };
   const encodedScope = config.scope.join(' ').replace(' ', '%20');
