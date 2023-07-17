@@ -9,7 +9,20 @@
   align-items: center;
 }
 .empty {
-  width: 100px;
+  width: 200px;
+  .song {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      height: 80px;
+      width: 80px;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
 }
 .player {
   display: flex;
