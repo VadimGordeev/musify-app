@@ -5,12 +5,14 @@ import { useParams } from 'react-router-dom';
 
 import { ReactComponent as Cover } from '~/assets/cover.svg';
 import { ReactComponent as DurationIcon } from '~/assets/icons/duration.svg';
+import { ReactComponent as PlayIcon } from '~/assets/icons/play.svg';
 
 import styles from './PlaylistPage.module.scss';
 import { EditPlaylist } from '../../features/EditPlaylist/EditPlaylist';
 import { Button } from '../../shared/ui/Button/Button';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
+import { useStartPlayAlbumMutation } from '../../store/api/player/player.api';
 import {
   useCheckIsUserFollowPlaylistQuery,
   useFollowPlaylistMutation,
@@ -45,6 +47,7 @@ export const PlaylistPage = () => {
     id: id || '',
     ids: userID
   });
+  const [startPlay] = useStartPlayAlbumMutation();
 
   return data ? (
     <div className={styles.container}>
@@ -87,6 +90,11 @@ export const PlaylistPage = () => {
                 {isFollow[0] ? 'Unfollow' : 'Follow'}
               </Button>
             )}
+            <Button
+              icon={<PlayIcon />}
+              className={styles.play}
+              onClick={() => void startPlay({ context_uri: data.uri })}
+            />
           </div>
           <p className={styles.type}>{data.type}</p>
           <p className={styles.name}>{data.name}</p>
