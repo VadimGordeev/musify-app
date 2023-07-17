@@ -92,7 +92,7 @@ export const playlistsApi = baseApi.injectEndpoints({
         })
       }
     ),
-    checkUserFollowPlaylist: build.query<
+    checkIsUserFollowPlaylist: build.query<
       [boolean],
       { id: string; ids: string | undefined }
     >({
@@ -102,8 +102,7 @@ export const playlistsApi = baseApi.injectEndpoints({
         params: {
           ids: ids
         }
-      }),
-      keepUnusedDataFor: 1
+      })
     })
   })
 });
@@ -116,5 +115,5 @@ export const {
   useCreatePlaylistMutation,
   useFollowPlaylistMutation,
   useUnfollowPlaylistMutation,
-  useCheckUserFollowPlaylistQuery
+  useCheckIsUserFollowPlaylistQuery
 } = playlistsApi;

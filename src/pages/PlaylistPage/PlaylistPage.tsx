@@ -12,7 +12,7 @@ import { Button } from '../../shared/ui/Button/Button';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
 import {
-  useCheckUserFollowPlaylistQuery,
+  useCheckIsUserFollowPlaylistQuery,
   useFollowPlaylistMutation,
   useGetPlaylistQuery,
   useUnfollowPlaylistMutation
@@ -39,9 +39,9 @@ export const PlaylistPage = () => {
     setIsModalState(modals.disable);
   };
   const [followPlaylist] = useFollowPlaylistMutation();
-  const [unfollowPlatlist] = useUnfollowPlaylistMutation();
+  const [unfollowPlaylist] = useUnfollowPlaylistMutation();
 
-  const { data: isFollow } = useCheckUserFollowPlaylistQuery({
+  const { data: isFollow } = useCheckIsUserFollowPlaylistQuery({
     id: id || '',
     ids: userID
   });
@@ -80,19 +80,13 @@ export const PlaylistPage = () => {
               <Button
                 onClick={() =>
                   isFollow[0]
-                    ? void unfollowPlatlist({ id: id || '' })
+                    ? void unfollowPlaylist({ id: id || '' })
                     : void followPlaylist({ id: id || '' })
                 }
               >
                 {isFollow[0] ? 'Unfollow' : 'Follow'}
               </Button>
             )}
-            {/* <Button onClick={() => void followPlaylist({ id: id || '' })}>
-              Follow
-            </Button>
-            <Button onClick={() => void unfollowPlatlist({ id: id || '' })}>
-              Unfollow
-            </Button> */}
           </div>
           <p className={styles.type}>{data.type}</p>
           <p className={styles.name}>{data.name}</p>
