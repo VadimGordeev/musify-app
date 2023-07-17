@@ -26,6 +26,8 @@ const baseQueryWithReauth: BaseQueryFn<
 > = async (argument, api, extraOptions) => {
   const result = await baseQuery(argument, api, extraOptions);
   if (result.error && result.error.status === 401) {
+    const href = window.location.href;
+    localStorage.setItem('href', href.replace('http://localhost:5173/', ''));
     authSpotify();
   }
   return result;

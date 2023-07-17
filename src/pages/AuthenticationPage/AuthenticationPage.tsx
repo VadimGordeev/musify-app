@@ -16,7 +16,12 @@ export const AuthenticationPage = () => {
         .find((element) => element.startsWith('access_token'))
         ?.split('=')[1];
 
-      if (token) {
+      const href = localStorage.getItem('href');
+      if (href && token) {
+        localStorage.setItem('spotify/access-token', token);
+        navigate(`/${href}`);
+        localStorage.removeItem('href');
+      } else if (token) {
         localStorage.setItem('spotify/access-token', token);
         navigate('/');
       }
