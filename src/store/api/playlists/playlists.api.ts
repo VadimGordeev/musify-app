@@ -91,7 +91,20 @@ export const playlistsApi = baseApi.injectEndpoints({
           }
         })
       }
-    )
+    ),
+    checkUserFollowPlaylist: build.query<
+      [boolean],
+      { id: string; ids: string | undefined }
+    >({
+      providesTags: [{ type: 'PLAYLIST', id: 'PLAYLIST' }],
+      query: ({ id, ids }) => ({
+        url: `playlists/${id}/followers/contains`,
+        params: {
+          ids: ids
+        }
+      }),
+      keepUnusedDataFor: 1
+    })
   })
 });
 
@@ -102,5 +115,6 @@ export const {
   useEditPlaylistImageMutation,
   useCreatePlaylistMutation,
   useFollowPlaylistMutation,
-  useUnfollowPlaylistMutation
+  useUnfollowPlaylistMutation,
+  useCheckUserFollowPlaylistQuery
 } = playlistsApi;
