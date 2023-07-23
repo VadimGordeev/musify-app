@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 import styles from './MainLayout.module.scss';
 import { Sidebar } from '../../features/Sidebar/Sidebar';
-import { LoginPage } from '../../pages/FirstPage/LoginPage';
+import { LoginPage } from '../../pages/LoginPage/LoginPage';
 import { Loader } from '../../shared/ui/Loader/Loader';
 import { Player } from '../../shared/ui/Player/Player';
 import { useAppDispatch, useAppSelector } from '../../store/store.types';

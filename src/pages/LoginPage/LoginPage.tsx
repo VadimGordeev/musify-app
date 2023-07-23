@@ -8,7 +8,7 @@ export const LoginPage = () => {
   const location = useLocation();
   return (
     <div className={styles.container}>
-      <h1>Welcome to Spotify</h1>
+      <h1>Welcome to Musify</h1>
       <Button
         className={styles.login}
         onClick={() => {
@@ -16,7 +16,7 @@ export const LoginPage = () => {
         }}
         disabled={!!location.hash}
       >
-        Login
+        Login with Spotify
       </Button>
     </div>
   );
