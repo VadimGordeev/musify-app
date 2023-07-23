@@ -15,7 +15,7 @@ https://musify-react-app.netlify.app/
 
 **Warning:** Spotify requires users to authenticate with a valid Spotify Premium subscription.
 
-**Warning:** While app in development mode, Spotify does not give access to all users. While Spotify process my request you can run application localy.
+**Warning:** While app in development mode, Spotify does not give access to all users. While Spotify process my request you can run application localy or [check screenshots](https://drive.google.com/drive/folders/1z9DaT7D3qhGQ4wdKPivVvj0fqeB7U0Hu).
 
 ## How to Run locally
 
