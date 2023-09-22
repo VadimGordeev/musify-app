@@ -19,7 +19,7 @@ export const AuthenticationPage = () => {
       const href = localStorage.getItem('href');
       if (href && token) {
         localStorage.setItem('spotify/access-token', token);
-        navigate(`/${href}`);
+        navigate(`${href}`);
         localStorage.removeItem('href');
       } else if (token) {
         localStorage.setItem('spotify/access-token', token);

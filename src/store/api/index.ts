@@ -6,7 +6,7 @@ import {
   fetchBaseQuery
 } from '@reduxjs/toolkit/query/react';
 
-import { SPOTIFY_URL } from '../../api/constant';
+import { BASE_URL, SPOTIFY_URL } from '../../api/constant';
 import { authSpotify } from '../../api/login';
 
 const baseQuery = fetchBaseQuery({
@@ -27,7 +27,8 @@ const baseQueryWithReauth: BaseQueryFn<
   const result = await baseQuery(argument, api, extraOptions);
   if (result.error && result.error.status === 401) {
     const href = window.location.href;
-    localStorage.setItem('href', href.replace('http://localhost:5173/', ''));
+    const redirectPath = href.replace(`${BASE_URL}`, '');
+    localStorage.setItem('href', redirectPath);
     authSpotify();
   }
   return result;
