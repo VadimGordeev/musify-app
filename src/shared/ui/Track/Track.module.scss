@@ -32,7 +32,7 @@
       height: 34px;
     }
   }
-  a {
+  .link {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -41,7 +41,14 @@
     font-weight: 700;
     line-height: 21px;
     margin: 0;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all 0.3s;
+    color: var(--white);
+    background-color: var(--grey);
     &:hover {
+      opacity: 1;
+      transition: all 0.3s;
       text-decoration: underline;
     }
   }
@@ -60,6 +67,19 @@
   }
   .album {
     width: 17%;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all 0.3s;
+    color: var(--white);
+    background-color: var(--grey);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &:hover {
+      opacity: 1;
+      transition: all 0.3s;
+      text-decoration: underline;
+    }
   }
 }
 

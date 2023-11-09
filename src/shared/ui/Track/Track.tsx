@@ -6,6 +6,8 @@ import { ReactComponent as Play } from '~/assets/icons/play.svg';
 import styles from './Track.module.scss';
 import { type Track } from '../../../entities/spotifyTypes';
 import { useStartPlayMutation } from '../../../store/api/player/player.api';
+import { useAppSelector } from '../../../store/store.types';
+import { activeDevice } from '../../../store/user/user.selector';
 import { Button } from '../Button/Button';
 
 const getFormattedUnit = (value: number): string => {
@@ -23,8 +25,18 @@ const getFormattedTrackDuration = (songDuration: number): string => {
     : '0:00';
 };
 
-export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
+export const TrackItem = ({
+  item,
+  index,
+  contextUri
+}: {
+  item: Track;
+  index: number;
+  contextUri?: string;
+}) => {
   const [startPlay] = useStartPlayMutation();
+
+  const deviceId = useAppSelector(activeDevice);
 
   return (
     <div className={styles.container}>
@@ -34,11 +46,15 @@ export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
           appearance="secondary"
           icon={<Play />}
           className={styles.play}
-          onClick={() =>
-            void startPlay({
-              id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e',
-              uris: item.uri
-            })
+          onClick={
+            contextUri
+              ? () =>
+                  void startPlay({
+                    id: deviceId,
+                    context_uri: contextUri,
+                    offset: index
+                  })
+              : () => void startPlay({ id: deviceId, uris: item.uri })
           }
         />
       </p>
@@ -46,7 +62,10 @@ export const TrackItem = ({ item, index }: { item: Track; index: number }) => {
         {item.album && <img src={item.album.images[0].url} />}
         <div className={styles.info}>
           <span>{item.name}</span>
-          <NavLink to={`/artist/${item.artists[0].id}`}>
+          <NavLink
+            to={`/artist/${item.artists[0].id}`}
+            className={styles.link}
+          >
             <span>{item.artists[0].name}</span>
           </NavLink>
         </div>

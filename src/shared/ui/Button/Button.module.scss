@@ -29,13 +29,17 @@
   border-radius: 20px;
   background-color: var(--light-grey);
   opacity: 0.7;
+  transition: all 0.3s;
   &:hover {
     opacity: 1;
+    transition: all 0.3s;
   }
 }
 .secondary {
   opacity: 0.7;
+  transition: all 0.3s;
   &:hover {
     opacity: 1;
+    transition: all 0.3s;
   }
 }

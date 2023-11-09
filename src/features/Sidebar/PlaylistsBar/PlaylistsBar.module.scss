@@ -13,6 +13,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .link {
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0.7;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--grey);
+    &:hover {
+      opacity: 1;
+      transition: all 0.3s;
+    }
+    &.active {
+      opacity: 1;
+      transition: all 0.3s;
+    }
+  }
   > button {
     height: 1rem;
     width: 1rem;
@@ -21,6 +41,7 @@
     font-size: 0.8rem;
     opacity: 0.8;
     color: var(--white);
+    transition: all 0.3s;
     &:hover {
       opacity: 1;
       transition: all 0.3s;

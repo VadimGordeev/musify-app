@@ -20,7 +20,11 @@ import {
   useUnfollowPlaylistMutation
 } from '../../store/api/playlists/playlists.api';
 import { useAppSelector } from '../../store/store.types';
-import { selectUser, userId } from '../../store/user/user.selector';
+import {
+  activeDevice,
+  selectUser,
+  userId
+} from '../../store/user/user.selector';
 
 export const modals = {
   disable: 'disable',
@@ -48,6 +52,8 @@ export const PlaylistPage = () => {
     ids: userID
   });
   const [startPlay] = useStartPlayAlbumMutation();
+
+  const deviceId = useAppSelector(activeDevice);
 
   return data ? (
     <div className={styles.container}>
@@ -93,7 +99,9 @@ export const PlaylistPage = () => {
             <Button
               icon={<PlayIcon />}
               className={styles.play}
-              onClick={() => void startPlay({ context_uri: data.uri })}
+              onClick={() =>
+                void startPlay({ id: deviceId, context_uri: data.uri })
+              }
             />
           </div>
           <p className={styles.type}>{data.type}</p>
@@ -125,6 +133,7 @@ export const PlaylistPage = () => {
                 key={item.track.id}
                 item={item.track}
                 index={index}
+                contextUri={data.uri}
               />
             );
           })}

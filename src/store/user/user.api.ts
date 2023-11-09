@@ -12,7 +12,7 @@ export const fetchUser = createAsyncThunk(
       throw new Error('Unauthorized');
     }
 
-    const { data } = await instance.get<UserProfile>(`/me/`, {
+    const { data } = await instance.get<UserProfile>(`/me`, {
       signal: thunkAPI.signal
     });
     return data;

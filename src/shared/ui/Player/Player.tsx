@@ -1,35 +1,32 @@
-import { useState } from 'react';
-
-import { ReactComponent as PlayIcon } from '~/assets/icons//btn/play.svg';
-import { ReactComponent as DeviceIcon } from '~/assets/icons/btn/airplay.svg';
-import { ReactComponent as PreviousIcon } from '~/assets/icons/btn/back.svg';
-import { ReactComponent as NextIcon } from '~/assets/icons/btn/forward.svg';
-import { ReactComponent as PauseIcon } from '~/assets/icons/btn/pause.svg';
-import { ReactComponent as VolumeIcon } from '~/assets/icons/volume.svg';
+import SpotifyWebPlayer from 'react-spotify-web-playback';
 
 import styles from './Player.module.scss';
-import {
-  useGetPlaybackStateQuery,
-  usePauseMutation,
-  useSkipToNextMutation,
-  useSkipToPreviousMutation,
-  useStartPlayMutation
-} from '../../../store/api/player/player.api';
-import { Button } from '../Button/Button';
+import { type Device } from '../../../entities/spotifyTypes';
+import { useGetPlaybackStateQuery } from '../../../store/api/player/player.api';
+import { useAppDispatch } from '../../../store/store.types';
+import { userActions } from '../../../store/user/user.slice';
+import { getActiveDeviceId } from '../../utils/getActiveDeviceId';
 
 export const Player = () => {
-  const [time, setTime] = useState('');
-  const [volume, setVolume] = useState('');
-
   const { data: playbackState } = useGetPlaybackStateQuery();
-  const [startPlay] = useStartPlayMutation();
-  const [pause] = usePauseMutation();
-  const [next] = useSkipToNextMutation();
-  const [previous] = useSkipToPreviousMutation();
+
+  const token = localStorage.getItem('spotify/access-token');
+  const dispatch = useAppDispatch();
 
   return (
     <div className={styles.container}>
-      <div className={styles.empty}>
+      <SpotifyWebPlayer
+        token={token || ''}
+        uris={playbackState?.item.uri || ''}
+        callback={(state) => {
+          dispatch(
+            userActions.addDeviceId(
+              getActiveDeviceId(state.devices as Device[])
+            )
+          );
+        }}
+      />
+      {/* <div className={styles.empty}>
         {playbackState?.item && (
           <div className={styles.song}>
             <img src={playbackState.item.album.images[0].url} />
@@ -49,15 +46,16 @@ export const Player = () => {
             icon={playbackState?.is_playing ? <PauseIcon /> : <PlayIcon />}
             appearance="secondary"
             className={styles.play}
-            onClick={() =>
-              playbackState?.is_playing
-                ? void pause({ id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e' })
-                : void startPlay({
-                    id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e',
-                    uris: playbackState?.item.uri
-                  })
-            }
+            // onClick={() =>
+            //   playbackState?.is_playing
+            //     ? void pause({ id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e' })
+            //     : void startPlay({
+            //         id: '4b037c47db1195d4fa086a41aa7ebd38d718df2e',
+            //         uris: playbackState?.item.uri
+            //       })
+            // }
           />
+          
           <Button
             icon={<NextIcon />}
             appearance="secondary"
@@ -94,7 +92,7 @@ export const Player = () => {
           value={volume}
           onChange={({ target: { value } }) => setVolume(value)}
         ></input>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -11,6 +11,8 @@ import { Loader } from '../../shared/ui/Loader/Loader';
 import { TrackItem } from '../../shared/ui/Track/Track';
 import { useGetAlbumQuery } from '../../store/api/album/album.api';
 import { useStartPlayAlbumMutation } from '../../store/api/player/player.api';
+import { useAppSelector } from '../../store/store.types';
+import { activeDevice } from '../../store/user/user.selector';
 
 export const AlbumPage = () => {
   const { id } = useParams<'id'>();
@@ -18,6 +20,8 @@ export const AlbumPage = () => {
   const { data } = useGetAlbumQuery({ id: id || '' });
 
   const [startPlay] = useStartPlayAlbumMutation();
+
+  const deviceId = useAppSelector(activeDevice);
 
   return data ? (
     <div className={styles.container}>
@@ -35,7 +39,9 @@ export const AlbumPage = () => {
             <Button
               icon={<PlayIcon />}
               className={styles.play}
-              onClick={() => void startPlay({ context_uri: data.uri })}
+              onClick={() =>
+                void startPlay({ id: deviceId, context_uri: data.uri })
+              }
             />
           </div>
           <p className={styles.type}>{data.album_type}</p>
@@ -71,6 +77,7 @@ export const AlbumPage = () => {
                 key={item.id}
                 item={item}
                 index={index}
+                contextUri={data.uri}
               />
             );
           })}

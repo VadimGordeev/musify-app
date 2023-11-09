@@ -4,4 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: baseline;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: all 0.3s;
+  color: var(--white);
+  background-color: var(--grey);
+  &:hover {
+    opacity: 1;
+    transition: all 0.3s;
+  }
 }

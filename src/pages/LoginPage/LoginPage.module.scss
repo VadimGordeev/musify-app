@@ -15,6 +15,7 @@
   width: fit-content;
   font-weight: normal;
   color: var(--white);
+  transition: all 0.3s;
   &:hover {
     opacity: 1;
     transition: all 0.3s;

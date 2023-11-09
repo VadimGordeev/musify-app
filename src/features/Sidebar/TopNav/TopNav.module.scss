@@ -6,7 +6,10 @@
   background-color: var(--grey);
   border-radius: 0.5rem;
 }
-a {
+
+.link {
+  margin: 0;
+  height: 35px;
   width: fit-content;
   text-decoration: none;
   display: flex;
@@ -28,8 +31,4 @@ a {
     opacity: 1;
     transition: all 0.3s;
   }
-}
-.link {
-  margin: 0;
-  height: 35px;
 }

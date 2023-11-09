@@ -7,4 +7,5 @@ export interface UserSlice {
     | { status: typeof STATUS.LOADING; isLoading: boolean }
     | { status: typeof STATUS.SUCCESS; data: UserProfile }
     | { status: typeof STATUS.ERROR; error: string };
+  deviceId: string;
 }

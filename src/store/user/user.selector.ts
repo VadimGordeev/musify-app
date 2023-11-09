@@ -16,3 +16,5 @@ export const userId = (state: RootState) =>
   state.user.currentUser.status === STATUS.SUCCESS
     ? state.user.currentUser.data.id
     : '';
+
+export const activeDevice = (state: RootState) => state.user.deviceId;
