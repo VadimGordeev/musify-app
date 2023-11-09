@@ -71,10 +71,10 @@ export const AppRouter = () => {
 
   useEffect(() => {
     if (tokens) {
-      const promise = dispatch(fetchUser());
+      const userPromise = dispatch(fetchUser());
 
       return () => {
-        promise.abort('cancelled');
+        userPromise.abort('cancelled');
       };
     }
   }, [dispatch, tokens]);

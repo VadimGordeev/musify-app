@@ -18,7 +18,8 @@ export const authSpotify = (): void => {
       'user-follow-read',
       'user-follow-modify',
       'user-read-playback-state',
-      'user-modify-playback-state'
+      'user-modify-playback-state',
+      'streaming'
     ]
   };
   const encodedScope = config.scope.join(' ').replace(' ', '%20');

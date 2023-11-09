@@ -69,6 +69,7 @@ export const ArtistPage = () => {
               key={item.id}
               item={item}
               index={index}
+              contextUri={artistData.uri}
             />
           );
         })}

@@ -8,9 +8,10 @@ interface DevicesResponse {
   devices: [Device];
 }
 interface PlayPayload {
-  id?: string;
+  id: string;
   uris?: string;
   context_uri?: string;
+  offset?: number;
 }
 
 export const playerApi = baseApi.injectEndpoints({
@@ -30,15 +31,16 @@ export const playerApi = baseApi.injectEndpoints({
     startPlay: build.mutation<void, PlayPayload>({
       invalidatesTags: [{ type: 'PLAYER', id: 'PLAYER' }],
       // eslint-disable-next-line @typescript-eslint/naming-convention -- Api requires
-      query: ({ id, uris, context_uri }) => ({
+      query: ({ id, context_uri, offset, uris }) => ({
         url: '/me/player/play',
         method: 'PUT',
         params: {
           device_id: id
         },
         body: {
-          uris: [uris],
-          context_uri: context_uri
+          context_uri: context_uri,
+          offset: offset ? { position: offset } : undefined,
+          uris: uris ? [uris] : undefined
         }
       })
     }),

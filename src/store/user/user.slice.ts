@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchUser } from './user.api';
 import { type UserSlice } from './user.types';
@@ -7,7 +7,8 @@ import { startAppListening } from '../store.types';
 
 const getInitialState = (): UserSlice => {
   return {
-    currentUser: { status: STATUS.IDLE }
+    currentUser: { status: STATUS.IDLE },
+    deviceId: ''
   };
 };
 
@@ -17,6 +18,9 @@ export const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.currentUser = { status: STATUS.IDLE };
+    },
+    addDeviceId: (state, action: PayloadAction<string>) => {
+      state.deviceId = action.payload;
     }
   },
   extraReducers: (builder) => {
